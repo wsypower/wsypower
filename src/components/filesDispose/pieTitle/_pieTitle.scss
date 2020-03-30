@@ -1,0 +1,15 @@
+.pieTitle {
+    width: 445px;
+    height: 289px;
+    .pieTitle_header{
+        width: 100%;
+        height: 56px;
+        background: url("./img/quyuanjuanshu.png") no-repeat;
+    }
+    .pieTitle_content{
+        width: 100%;
+        height: 233px;
+        background: url("./img/barbc.png") no-repeat;
+        background-size: 100%;
+    }
+}

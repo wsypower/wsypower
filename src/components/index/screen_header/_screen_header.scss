@@ -1,0 +1,87 @@
+
+.screen_header {
+    width: 100%;
+    height: 182px;
+    position: relative;
+
+    .screen_header_center {
+        height: 47px;
+        @include center-translate(x);
+        top: 94px;
+
+        ul {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+
+            li {
+                width: 160px;
+                height: 100%;
+                color: #ffffff;
+                font-size: 20px;
+                background: url("./img/nav-bc.png");
+                margin-left: 10px;
+                cursor: pointer;
+                transition: all .6s;
+
+                img {
+                    width: 18px;
+                    margin-right: 10px;
+                }
+
+                &:hover {
+                    background: url("./img/nav-bc-acitve.png");
+                }
+
+                @include first(1) {
+                    margin-left: 0px;
+                    background: url("./img/left-nav.png");
+                    &:hover {
+                        background: url("./img/left-nav-active.png");
+                    }
+                }
+                @include last(1) {
+                    background: url("./img/right-nav.png");
+                    &:hover {
+                        background: url("./img/right-nav-active.png");
+                    }
+                }
+            }
+
+            li.navactve {
+                background: url("./img/nav-bc-acitve.png");
+                @include first(1) {
+                    background: url("./img/left-nav-active.png");
+                }
+                @include last(1) {
+                    background: url("./img/right-nav-active.png");
+                }
+            }
+        }
+    }
+
+    .screen_header_right {
+        width: 322px;
+        height: 89px;
+        padding-right: 30px;
+        box-sizing: border-box;
+
+        .screen_timer {
+            font-family: nums;
+            color: #53a3f5;
+            font-size: 24px;
+        }
+
+        .screen_week {
+            color: #53a3f5;
+            font-size: 20px;
+        }
+    }
+    .screen_header_left{
+        width: 161px;
+        height: 44px;
+        margin-left: 30px;
+        margin-top: 25px;
+        background:url("./img/select.png");
+    }
+}

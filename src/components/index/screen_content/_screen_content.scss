@@ -1,0 +1,9 @@
+.screen_content {
+    width: 100%;
+    height: calc(100% - 182px);
+    .screen_main{
+        width: 1862px;
+        height: 880px;
+        overflow: hidden;
+    }
+}

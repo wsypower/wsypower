@@ -1,0 +1,31 @@
+.summarize {
+    width: 100%;
+    height: 100%;
+    .summarize_header{
+        width: 100%;
+        height: 77px;
+    }
+    .summarize_content{
+        width: 100%;
+        height: 513px;
+        .summarize_content_map{
+            width: 1040px;
+            height: 100%;
+            margin-right: 42px;
+        }
+        .summarize_content_icon{
+            margin-left: 10px;
+            width: 184px;
+            height: 100%;
+        }
+        .summarize_content_chart{
+            width: 780px;
+            height: 100%;
+        }
+    }
+    .summarize_footer{
+        margin-top: 18px;
+        width: 100%;
+        height: 259px;
+    }
+}

@@ -1,0 +1,36 @@
+.exponent {
+    width: 100%;
+    height: 100%;
+    .exponent__item{
+        height: 100%;
+        width: 270px;
+        padding-bottom: 9px;
+
+        .exponent__item_icon{
+            width: 70px;
+            height: 100%;
+            margin-left: 19px;
+            img{
+                width: 22px;
+                height: 22px;
+            }
+        }
+        .exponent__item_title{
+            width: 180px;
+            height: 100%;
+            color: #ffffff;
+            font-size: 18px;
+            padding-left: 10px;
+            height: 100%;
+            font-weight: 600;
+        }
+        .exponent__item_title_nums{
+            font-family: nums;
+            color: #fed700;
+            font-size: 40px;
+            height: 100%;
+            width: 47%;
+            margin-top: -5px;
+        }
+    }
+}

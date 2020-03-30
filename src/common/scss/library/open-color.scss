@@ -1,0 +1,400 @@
+//
+//
+//  𝗖 𝗢 𝗟 𝗢 𝗥
+//  v 1.6.3
+//  魏亚飞
+//  2018-7-9
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+//  General 黑白
+//  ───────────────────────────────────
+
+$oc-bai:         #ffffff;
+$oc-hei:         #000000;
+
+
+//  灰色
+//  ───────────────────────────────────
+
+$oc-hui-list: (
+  "0": #f8f9fa,
+  "1": #f1f3f5,
+  "2": #e9ecef,
+  "3": #dee2e6,
+  "4": #ced4da,
+  "5": #adb5bd,
+  "6": #868e96,
+  "7": #495057,
+  "8": #343a40,
+  "9": #212529
+);
+
+$oc-hui-0: map-get($oc-hui-list, "0");
+$oc-hui-1: map-get($oc-hui-list, "1");
+$oc-hui-2: map-get($oc-hui-list, "2");
+$oc-hui-3: map-get($oc-hui-list, "3");
+$oc-hui-4: map-get($oc-hui-list, "4");
+$oc-hui-5: map-get($oc-hui-list, "5");
+$oc-hui-6: map-get($oc-hui-list, "6");
+$oc-hui-7: map-get($oc-hui-list, "7");
+$oc-hui-8: map-get($oc-hui-list, "8");
+$oc-hui-9: map-get($oc-hui-list, "9");
+
+
+//  红色
+//  ───────────────────────────────────
+
+$oc-hong-list: (
+  "0": #fff5f5,
+  "1": #ffe3e3,
+  "2": #ffc9c9,
+  "3": #ffa8a8,
+  "4": #ff8787,
+  "5": #ff6b6b,
+  "6": #fa5252,
+  "7": #f03e3e,
+  "8": #e03131,
+  "9": #c92a2a
+);
+
+$oc-hong-0: map-get($oc-hong-list, "0");
+$oc-hong-1: map-get($oc-hong-list, "1");
+$oc-hong-2: map-get($oc-hong-list, "2");
+$oc-hong-3: map-get($oc-hong-list, "3");
+$oc-hong-4: map-get($oc-hong-list, "4");
+$oc-hong-5: map-get($oc-hong-list, "5");
+$oc-hong-6: map-get($oc-hong-list, "6");
+$oc-hong-7: map-get($oc-hong-list, "7");
+$oc-hong-8: map-get($oc-hong-list, "8");
+$oc-hong-9: map-get($oc-hong-list, "9");
+
+
+//  粉色
+//  ───────────────────────────────────
+
+$oc-fen-list: (
+  "0": #fff0f6,
+  "1": #ffdeeb,
+  "2": #fcc2d7,
+  "3": #faa2c1,
+  "4": #f783ac,
+  "5": #f06595,
+  "6": #e64980,
+  "7": #d6336c,
+  "8": #c2255c,
+  "9": #a61e4d
+);
+
+$oc-fen-0: map-get($oc-fen-list, "0");
+$oc-fen-1: map-get($oc-fen-list, "1");
+$oc-fen-2: map-get($oc-fen-list, "2");
+$oc-fen-3: map-get($oc-fen-list, "3");
+$oc-fen-4: map-get($oc-fen-list, "4");
+$oc-fen-5: map-get($oc-fen-list, "5");
+$oc-fen-6: map-get($oc-fen-list, "6");
+$oc-fen-7: map-get($oc-fen-list, "7");
+$oc-fen-8: map-get($oc-fen-list, "8");
+$oc-fen-9: map-get($oc-fen-list, "9");
+
+
+//  红紫色
+//  ───────────────────────────────────
+
+$oc-hongzi-list: (
+  "0": #f8f0fc,
+  "1": #f3d9fa,
+  "2": #eebefa,
+  "3": #e599f7,
+  "4": #da77f2,
+  "5": #cc5de8,
+  "6": #be4bdb,
+  "7": #ae3ec9,
+  "8": #9c36b5,
+  "9": #862e9c
+);
+
+$oc-hongzi-0: map-get($oc-hongzi-list, "0");
+$oc-hongzi-1: map-get($oc-hongzi-list, "1");
+$oc-hongzi-2: map-get($oc-hongzi-list, "2");
+$oc-hongzi-3: map-get($oc-hongzi-list, "3");
+$oc-hongzi-4: map-get($oc-hongzi-list, "4");
+$oc-hongzi-5: map-get($oc-hongzi-list, "5");
+$oc-hongzi-6: map-get($oc-hongzi-list, "6");
+$oc-hongzi-7: map-get($oc-hongzi-list, "7");
+$oc-hongzi-8: map-get($oc-hongzi-list, "8");
+$oc-hongzi-9: map-get($oc-hongzi-list, "9");
+
+
+//  紫色
+//  ───────────────────────────────────
+
+$oc-zi-list: (
+  "0": #f3f0ff,
+  "1": #e5dbff,
+  "2": #d0bfff,
+  "3": #b197fc,
+  "4": #9775fa,
+  "5": #845ef7,
+  "6": #7950f2,
+  "7": #7048e8,
+  "8": #6741d9,
+  "9": #5f3dc4
+);
+
+$oc-zi-0: map-get($oc-zi-list, "0");
+$oc-zi-1: map-get($oc-zi-list, "1");
+$oc-zi-2: map-get($oc-zi-list, "2");
+$oc-zi-3: map-get($oc-zi-list, "3");
+$oc-zi-4: map-get($oc-zi-list, "4");
+$oc-zi-5: map-get($oc-zi-list, "5");
+$oc-zi-6: map-get($oc-zi-list, "6");
+$oc-zi-7: map-get($oc-zi-list, "7");
+$oc-zi-8: map-get($oc-zi-list, "8");
+$oc-zi-9: map-get($oc-zi-list, "9");
+
+
+//  蓝紫色
+//  ───────────────────────────────────
+
+$oc-lanzi-list: (
+  "0": #edf2ff,
+  "1": #dbe4ff,
+  "2": #bac8ff,
+  "3": #91a7ff,
+  "4": #748ffc,
+  "5": #5c7cfa,
+  "6": #4c6ef5,
+  "7": #4263eb,
+  "8": #3b5bdb,
+  "9": #364fc7
+);
+
+$oc-lanzi-0: map-get($oc-lanzi-list, "0");
+$oc-lanzi-1: map-get($oc-lanzi-list, "1");
+$oc-lanzi-2: map-get($oc-lanzi-list, "2");
+$oc-lanzi-3: map-get($oc-lanzi-list, "3");
+$oc-lanzi-4: map-get($oc-lanzi-list, "4");
+$oc-lanzi-5: map-get($oc-lanzi-list, "5");
+$oc-lanzi-6: map-get($oc-lanzi-list, "6");
+$oc-lanzi-7: map-get($oc-lanzi-list, "7");
+$oc-lanzi-8: map-get($oc-lanzi-list, "8");
+$oc-lanzi-9: map-get($oc-lanzi-list, "9");
+
+
+//  蓝色
+//  ───────────────────────────────────
+
+$oc-lan-list: (
+  "0": #e7f5ff,
+  "1": #d0ebff,
+  "2": #a5d8ff,
+  "3": #74c0fc,
+  "4": #4dabf7,
+  "5": #339af0,
+  "6": #228be6,
+  "7": #1c7ed6,
+  "8": #1971c2,
+  "9": #1864ab
+);
+
+$oc-lan-0: map-get($oc-lan-list, "0");
+$oc-lan-1: map-get($oc-lan-list, "1");
+$oc-lan-2: map-get($oc-lan-list, "2");
+$oc-lan-3: map-get($oc-lan-list, "3");
+$oc-lan-4: map-get($oc-lan-list, "4");
+$oc-lan-5: map-get($oc-lan-list, "5");
+$oc-lan-6: map-get($oc-lan-list, "6");
+$oc-lan-7: map-get($oc-lan-list, "7");
+$oc-lan-8: map-get($oc-lan-list, "8");
+$oc-lan-9: map-get($oc-lan-list, "9");
+
+
+//  蓝绿色
+//  ───────────────────────────────────
+
+$oc-lanlv-list: (
+  "0": #e3fafc,
+  "1": #c5f6fa,
+  "2": #99e9f2,
+  "3": #66d9e8,
+  "4": #3bc9db,
+  "5": #22b8cf,
+  "6": #15aabf,
+  "7": #1098ad,
+  "8": #0c8599,
+  "9": #0b7285
+);
+
+$oc-lanlv-0: map-get($oc-lanlv-list, "0");
+$oc-lanlv-1: map-get($oc-lanlv-list, "1");
+$oc-lanlv-2: map-get($oc-lanlv-list, "2");
+$oc-lanlv-3: map-get($oc-lanlv-list, "3");
+$oc-lanlv-4: map-get($oc-lanlv-list, "4");
+$oc-lanlv-5: map-get($oc-lanlv-list, "5");
+$oc-lanlv-6: map-get($oc-lanlv-list, "6");
+$oc-lanlv-7: map-get($oc-lanlv-list, "7");
+$oc-lanlv-8: map-get($oc-lanlv-list, "8");
+$oc-lanlv-9: map-get($oc-lanlv-list, "9");
+
+
+// 深绿色
+//  ───────────────────────────────────
+
+$oc-shenlv-list: (
+  "0": #e6fcf5,
+  "1": #c3fae8,
+  "2": #96f2d7,
+  "3": #63e6be,
+  "4": #38d9a9,
+  "5": #20c997,
+  "6": #12b886,
+  "7": #0ca678,
+  "8": #099268,
+  "9": #087f5b
+);
+
+$oc-shenlv-0: map-get($oc-shenlv-list, "0");
+$oc-shenlv-1: map-get($oc-shenlv-list, "1");
+$oc-shenlv-2: map-get($oc-shenlv-list, "2");
+$oc-shenlv-3: map-get($oc-shenlv-list, "3");
+$oc-shenlv-4: map-get($oc-shenlv-list, "4");
+$oc-shenlv-5: map-get($oc-shenlv-list, "5");
+$oc-shenlv-6: map-get($oc-shenlv-list, "6");
+$oc-shenlv-7: map-get($oc-shenlv-list, "7");
+$oc-shenlv-8: map-get($oc-shenlv-list, "8");
+$oc-shenlv-9: map-get($oc-shenlv-list, "9");
+
+
+//  绿色
+//  ───────────────────────────────────
+
+$oc-lv-list: (
+  "0": #ebfbee,
+  "1": #d3f9d8,
+  "2": #b2f2bb,
+  "3": #8ce99a,
+  "4": #69db7c,
+  "5": #51cf66,
+  "6": #40c057,
+  "7": #37b24d,
+  "8": #2f9e44,
+  "9": #2b8a3e
+);
+
+$oc-lv-0: map-get($oc-lv-list, "0");
+$oc-lv-1: map-get($oc-lv-list, "1");
+$oc-lv-2: map-get($oc-lv-list, "2");
+$oc-lv-3: map-get($oc-lv-list, "3");
+$oc-lv-4: map-get($oc-lv-list, "4");
+$oc-lv-5: map-get($oc-lv-list, "5");
+$oc-lv-6: map-get($oc-lv-list, "6");
+$oc-lv-7: map-get($oc-lv-list, "7");
+$oc-lv-8: map-get($oc-lv-list, "8");
+$oc-lv-9: map-get($oc-lv-list, "9");
+
+
+//  黄绿色
+//  ───────────────────────────────────
+
+$oc-huanglv-list: (
+  "0": #f4fce3,
+  "1": #e9fac8,
+  "2": #d8f5a2,
+  "3": #c0eb75,
+  "4": #a9e34b,
+  "5": #94d82d,
+  "6": #82c91e,
+  "7": #74b816,
+  "8": #66a80f,
+  "9": #5c940d
+);
+
+$oc-huanglv-0: map-get($oc-huanglv-list, "0");
+$oc-huanglv-1: map-get($oc-huanglv-list, "1");
+$oc-huanglv-2: map-get($oc-huanglv-list, "2");
+$oc-huanglv-3: map-get($oc-huanglv-list, "3");
+$oc-huanglv-4: map-get($oc-huanglv-list, "4");
+$oc-huanglv-5: map-get($oc-huanglv-list, "5");
+$oc-huanglv-6: map-get($oc-huanglv-list, "6");
+$oc-huanglv-7: map-get($oc-huanglv-list, "7");
+$oc-huanglv-8: map-get($oc-huanglv-list, "8");
+$oc-huanglv-9: map-get($oc-huanglv-list, "9");
+
+
+//  黄色
+//  ───────────────────────────────────
+
+$oc-huang-list: (
+  "0": #fff9db,
+  "1": #fff3bf,
+  "2": #ffec99,
+  "3": #ffe066,
+  "4": #ffd43b,
+  "5": #fcc419,
+  "6": #fab005,
+  "7": #f59f00,
+  "8": #f08c00,
+  "9": #e67700
+);
+
+$oc-huang-0: map-get($oc-huang-list, "0");
+$oc-huang-1: map-get($oc-huang-list, "1");
+$oc-huang-2: map-get($oc-huang-list, "2");
+$oc-huang-3: map-get($oc-huang-list, "3");
+$oc-huang-4: map-get($oc-huang-list, "4");
+$oc-huang-5: map-get($oc-huang-list, "5");
+$oc-huang-6: map-get($oc-huang-list, "6");
+$oc-huang-7: map-get($oc-huang-list, "7");
+$oc-huang-8: map-get($oc-huang-list, "8");
+$oc-huang-9: map-get($oc-huang-list, "9");
+
+
+//  橙色
+//  ───────────────────────────────────
+
+$oc-cheng-list: (
+  "0": #fff4e6,
+  "1": #ffe8cc,
+  "2": #ffd8a8,
+  "3": #ffc078,
+  "4": #ffa94d,
+  "5": #ff922b,
+  "6": #fd7e14,
+  "7": #f76707,
+  "8": #e8590c,
+  "9": #d9480f
+);
+
+$oc-cheng-0: map-get($oc-cheng-list, "0");
+$oc-cheng-1: map-get($oc-cheng-list, "1");
+$oc-cheng-2: map-get($oc-cheng-list, "2");
+$oc-cheng-3: map-get($oc-cheng-list, "3");
+$oc-cheng-4: map-get($oc-cheng-list, "4");
+$oc-cheng-5: map-get($oc-cheng-list, "5");
+$oc-cheng-6: map-get($oc-cheng-list, "6");
+$oc-cheng-7: map-get($oc-cheng-list, "7");
+$oc-cheng-8: map-get($oc-cheng-list, "8");
+$oc-cheng-9: map-get($oc-cheng-list, "9");
+
+
+//  Color list
+//  ───────────────────────────────────
+
+$oc-color-spectrum:   9;
+
+$oc-color-list: (
+  $oc-hui-list:      "hui",
+  $oc-hong-list:      "hong",
+  $oc-fen-list:      "fen",
+  $oc-hongzi-list:      "hongzi",
+  $oc-zi-list:      "zi",
+  $oc-lanzi-list:      "lanzi",
+  $oc-lan-list:      "lan",
+  $oc-lanlv-list:      "lanlv",
+  $oc-shenlv-list:      "shenlv",
+  $oc-lv-list:      "lv",
+  $oc-huanglv-list:      "huanglv",
+  $oc-huang-list:      "huang",
+  $oc-cheng-list:      "cheng"
+);

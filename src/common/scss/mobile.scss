@@ -1,0 +1,93 @@
+
+@function r($px, $base-rem: 75) {
+   @return ($px / $base-rem) * 1rem;
+}
+@mixin px2rem($property,$px-values,$baseline-px:16px,$support-for-ie:false) {
+    //Conver the baseline into rems
+    $baseline-rem: $baseline-px / 1rem * 1;
+    //Print the first line in pixel values
+    @if $support-for-ie {
+        #{$property}: $px-values;
+    }
+    //if there is only one (numeric) value, return the property/value line for it.
+    @if type-of($px-values) == "number" {
+        #{$property}: $px-values / $baseline-rem;
+    } @else {
+        //Create an empty list that we can dump values into
+        $rem-values: ();
+        @each $value in $px-values {
+            // If the value is zero or not a number, return it
+            @if $value == 0 or type-of($value) != "number" {
+                $rem-values: append($rem-values, $value / $baseline-rem);
+            }
+        }
+        // Return the property and its list of converted values
+        #{$property}: $rem-values;
+    }
+}
+
+@mixin flexC() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin inflexC() {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexH() {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexB() {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin rem($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+    @for $i from 1 through $max {
+        $value: strip-units(nth($values, $i));
+        $browser-default-font-size: strip-units($browser-default-font-size);
+        $pxValues: #{$pxValues + $value * $browser-default-font-size}px;
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
+    }
+    @for $i from 1 through $max {
+        $value: strip-units(nth($values, $i));
+        $remValues: #{$remValues + $value}rem;
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+    #{$property}: $pxValues;
+    #{$property}: $remValues;
+}
+
+@mixin m-img($url) {
+    background-image: url($url + "@2x.png");
+    @media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3){
+        background-image: url($url + "@3x.png")
+    }
+}
+@mixin bcimg($url){
+    background-image: url($url + "@2x.png");
+    @media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3){
+        background-image: url($url + "@3x.png")
+    }
+    background-repeat: no-repeat;
+    background-size:100%;
+    background-position: left;
+    margin-right: r(21);
+}
+@mixin Family{
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+}

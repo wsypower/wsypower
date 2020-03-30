@@ -1,0 +1,146 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+@font-face {
+  font-family: "LCD";
+  src: url("../fonts/GDR.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BigYoungMedium";
+  src: url("../fonts/BIGYONG.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*//.icon_total {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/total.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_city {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/city.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_hw {*/
+/*//  display: inline-block;*/
+/*//  width: 24px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/hw.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_zn {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/zn.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_jt {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/jt.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_car {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/car.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_light {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/light.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_camaro {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/camaro.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_gridline {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/gridline.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_comment {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/comment.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_plice {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/plice.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_gzlx {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/gzlx.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//.icon_streen {*/
+/*//  display: inline-block;*/
+/*//  width: 44px;*/
+/*//  height: 44px;*/
+/*//  background: url("../img/streen.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_lian {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/lian.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_shangbao {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/shangbao.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_chuli {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/chuli.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
+/*//*/
+/*//.icon_jiean {*/
+/*//  display: inline-block;*/
+/*//  width: 18px;*/
+/*//  height: 18px;*/
+/*//  background: url("../img/jiean.png") no-repeat;*/
+/*//  vertical-align: middle;*/
+/*//}*/
