@@ -5,7 +5,7 @@
       <div class="left">
         <ul class="cover-list">
           <li class="cover-li">
-            <div class="cover-name green">
+            <div class="cover-name blue">
               <span class="iconfont icon-manhole-cover"></span> 布控
             </div>
             <div class="cover-number">{{allNumber}}</div>
@@ -71,7 +71,7 @@ export default {
             if(item.alarmStateName=="告警") {
               warnNubmer = warnNubmer + 1;
             }else {
-              normalNumber = normalNumber + 1 
+              normalNumber = normalNumber + 1
             }
           })
           this.normalNumber = normalNumber;
@@ -152,6 +152,9 @@ export default {
 .cover-number {
   font-size: 20px;
   color: #f7c61d;
+}
+.blue .iconfont {
+  color: #16c0db;
 }
 .green .iconfont {
   color: #16db4e;

@@ -31,7 +31,7 @@
             <div class="bin-icon">
               <img src="./img/bin_error.png" alt /> 待检修
             </div>
-            <div class="bin-number">0</div>
+            <div class="bin-number">{{numberInfo.offlineCount}}</div>
           </div>
         </div>
       </div>
@@ -63,45 +63,17 @@ export default {
   data() {
     return {
       numberInfo:{
+        normalCount:0,
         alarmCount:0,
-        normalCount:0
+        offlineCount: 0
       },
       tableDataList: [
         {
-          info: "岱山县高亭镇",
-          type: "严重",
-          number: "8"
+          streetName: '',
+          day: 0,
+          month: 0,
+          year: 0
         }
-        // {
-        //   info: "朱家尖街道",
-        //   type: "紧急",
-        //   number: "34"
-        // },
-        // {
-        //   info: "朱家尖街道",
-        //   type: "一般",
-        //   number: "33"
-        // },
-        // {
-        //   info: "朱家尖街道",
-        //   type: "",
-        //   number: "33"
-        // },
-        // {
-        //   info: "朱家尖街道",
-        //   type: "",
-        //   number: "33"
-        // },
-        // {
-        //   info: "朱家尖街道",
-        //   type: "",
-        //   number: "33"
-        // },
-        // {
-        //   info: "朱家尖街道",
-        //   type: "",
-        //   number: "33"
-        // }
       ]
     };
   },
@@ -114,7 +86,7 @@ export default {
       this.axios.get("/iot/device/state?deviceType=7")
         .then(response => {
           this.numberInfo = response.data.result;
-          console.log('list',this.list);
+          console.log('numberInfo',this.numberInfo);
          }
         )
     },
@@ -122,7 +94,7 @@ export default {
       this.axios.post("/bigscreen/wasteWarn/")
         .then(response => {
           this.tableDataList = response.data.result;
-          console.log('list',this.list);
+          console.log('tableDataList',this.tableDataList);
          }
         )
     }
@@ -223,6 +195,7 @@ export default {
 
 .number-color {
   color: #2b90f3;
+  padding: 0px 5px;
 }
 .type-box {
   display: none;
