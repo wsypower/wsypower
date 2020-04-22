@@ -68,8 +68,8 @@ export default {
         {
           name: "智能路灯",
           icon: "icon-ludeng",
-          total: 20,
-          normal: 18
+          total: 0,
+          normal: 0
         },
         {
           name: "消防栓",
