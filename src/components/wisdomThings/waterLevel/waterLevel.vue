@@ -46,8 +46,8 @@
               <el-tabs class="tab-heshui" v-model="activeNameHeShui" @tab-click="handleClick">
                 <el-tab-pane label="长河东" name="长河东"></el-tab-pane>
                 <el-tab-pane label="长河育才路口" name="长河育才路口"></el-tab-pane>
-                <el-tab-pane label="长河西" name="长河西"></el-tab-pane>
                 <el-tab-pane label="长河和谐路口" name="长河和谐路口"></el-tab-pane>
+                <el-tab-pane label="长河西" name="长河西"></el-tab-pane>
               </el-tabs>
           </div>
         </div>
