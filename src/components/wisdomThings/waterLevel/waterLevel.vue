@@ -45,7 +45,9 @@
             河水位(岱山河道)
               <el-tabs class="tab-heshui" v-model="activeNameHeShui" @tab-click="handleClick">
                 <el-tab-pane label="长河东" name="长河东"></el-tab-pane>
+                <el-tab-pane label="长河育才路口" name="长河育才路口"></el-tab-pane>
                 <el-tab-pane label="长河西" name="长河西"></el-tab-pane>
+                <el-tab-pane label="长河和谐路口" name="长河和谐路口"></el-tab-pane>
               </el-tabs>
           </div>
         </div>
@@ -420,10 +422,22 @@ export default {
         this.waterWarnLevel = 1.9;
         this.getData();
       }
-      else{
+      else if(tab.label==='长河西'){
         this.deviceId = '94fc9220acfb11e9c16b369b7d30f9da';
         this.address = '海滨嘉苑（沿港中路389号）';
         this.waterWarnLevel = 1.6;
+        this.getData();
+      }
+      else if(tab.label==='长河和谐路口'){
+        this.deviceId = 'd6e69a20a95611ea15b9151fdbd84f14';
+        this.address = '长河路与和谐路交叉路口';
+        this.waterWarnLevel = 2.5;
+        this.getData();
+      }
+      else {
+        this.deviceId = '82caa930a95711ea15b9151fdbd84f14';
+        this.address = '长河路与育才路交叉路口';
+        this.waterWarnLevel = 2.5;
         this.getData();
       }
     },
@@ -663,21 +677,21 @@ export default {
 }
 .tab-heshui{
   position: absolute;
-  right: 10px;
+  right: -10px;
   top: 2px;
-  /deep/.el-tabs__item{
+  ::v-deep.el-tabs__item{
     color:#ffffff;
     padding: 0px 5px;
     height: unset;
     line-height: unset;
   }
-  /deep/.is-active {
+  ::v-deep.is-active {
     color: #ffffff;
   }
-  /deep/.el-tabs__nav-wrap::after {
+  ::v-deep.el-tabs__nav-wrap::after {
     background-color: transparent;
   }
-  /deep/.el-tabs__active-bar {
+  ::v-deep.el-tabs__active-bar {
     background-color: #ffe013;
   }
 }

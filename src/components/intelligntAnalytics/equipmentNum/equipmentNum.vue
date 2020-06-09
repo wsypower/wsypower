@@ -120,7 +120,7 @@ export default {
       width: 63px;
       height: 63px;
       margin-left: 24px;
-      /deep/.leijiicon {
+      ::v-deep.leijiicon {
         width: 22px;
       }
     }

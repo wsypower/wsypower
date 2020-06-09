@@ -263,7 +263,7 @@ export default {
 
 <style scoped lang="scss">
 @import "barChart";
-/deep/.el-radio {
+::v-deep.el-radio {
   color: #ffffff;
 }
 </style>

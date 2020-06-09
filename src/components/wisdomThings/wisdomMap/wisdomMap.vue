@@ -292,7 +292,13 @@ export default {
     getEventDataList() {
       this.axios.post("/bigscreen/eventTypeName").then(response => {
         console.log('getEventDataList',response);
-        this.eventList = response.data.result;
+        // this.eventList = response.data.result;
+        this.eventList = response.data.result.reduce((acc,item)=>{
+          if(item.name!=='城乡规划'){
+            acc.push(item);
+          }
+          return acc
+        },[]);
       });
     },
     chooseType(item, event) {

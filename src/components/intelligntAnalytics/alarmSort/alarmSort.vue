@@ -157,7 +157,7 @@ export default {
       background-color: rgba(28, 125, 250, 0.2);
       margin-top: 10px;
       margin-left: 5px;
-      /deep/.el-radio {
+      ::v-deep.el-radio {
         color: #ffffff;
         &:last-child {
           margin-top: 30px;
