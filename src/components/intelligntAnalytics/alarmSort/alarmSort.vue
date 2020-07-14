@@ -11,18 +11,16 @@
       </div>
     </div>
     <div class="sort_content" flex="dir:left">
-      <div class="type-panel">
-        <div style="height:100%;width:100%;padding-left:25px;" flex="main:center cross:center">
-          <el-radio-group v-model="sjtype" @change="changeSJType">
-            <el-radio label="01">事件</el-radio>
-            <el-radio label="02">部件</el-radio>
-          </el-radio-group>
-        </div>
+      <div class="type-panel" flex="main:center cross:center">
+        <el-radio-group v-model="sjtype" @change="changeSJType">
+          <el-radio label="01">事件</el-radio>
+          <el-radio label="02">部件</el-radio>
+        </el-radio-group>
       </div>
       <div class="card-item">
         <div class="ul-panel scroll-height">
-          <happy-scroll color="#073ec8" size="5" resize>
-            <ul style="width:470px;">
+          <my-scroll>
+            <ul>
               <li class="ul-header">
                 <span>排名</span>
                 <span>告警类型</span>
@@ -36,7 +34,7 @@
                 <span>{{ item.num }}</span>
               </li>
             </ul>
-          </happy-scroll>
+          </my-scroll>
         </div>
       </div>
     </div>
@@ -136,129 +134,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.alarmSort {
-  width: 591px;
-  height: 328px;
-  /*margin-right: 30px;*/
-  margin-top: 20px;
-  .alarmSort_header {
-    width: 100%;
-    height: 56px;
-    background: url("./img/title.png") no-repeat;
-  }
-  .sort_content {
-    width: 100%;
-    height: 272px;
-    background: url("./img/background.png") no-repeat;
-    background-size: 100% 100%;
-    .type-panel {
-      width: 93px;
-      height: 257px;
-      background-color: rgba(28, 125, 250, 0.2);
-      margin-top: 10px;
-      margin-left: 5px;
-      ::v-deep.el-radio {
-        color: #ffffff;
-        &:last-child {
-          margin-top: 30px;
-        }
-        .el-radio__inner {
-          border: 1px solid #ffffff;
-          background-color: transparent;
-        }
-        .el-radio__input.is-checked + .el-radio__label {
-          color: #ffffff;
-        }
-        .el-radio__inner::after {
-          width: 6px;
-          height: 6px;
-        }
-      }
-    }
-    .card-item {
-      height: 248px;
-      width: 482px;
-      margin-left: 5px;
-      margin-top: 19px;
-      .ul-panel {
-        width: 100%;
-        height: 100%;
-        li {
-          height: 40px;
-          line-height: 40px;
-          margin-top: 4px;
-          list-style-type: none;
-          &:first-child {
-            margin-top: 0px;
-          }
-          span {
-            display: inline-block;
-            text-align: left;
-            &:nth-child(1) {
-              width: 120px;
-              padding-left: 30px;
-            }
-            &:nth-child(2) {
-              width: 250px;
-            }
-            &:nth-child(3) {
-              width: 100px;
-            }
-          }
-        }
-        ul {
-          .ul-header {
-            background-color: rgba(7, 9, 60, 0.4);
-            span {
-              font-family: MicrosoftYaHei;
-              font-size: 14px;
-              letter-spacing: 0px;
-              color: #6694fd;
-            }
-          }
-          .ul-body {
-            height: 38px;
-            line-height: 38px;
-            background-color: rgba(28, 125, 250, 0.2);
-            span {
-              font-family: PingFang-SC-Medium;
-              font-size: 14px;
-              letter-spacing: 0px;
-              color: #ffffff;
-              i {
-                display: inline-block;
-                width: 26px;
-                height: 26px;
-                border-radius: 26px;
-                background-color: #00c0ff;
-                color: #000000;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 26px;
-                font-style: unset;
-              }
-            }
-            &:nth-child(3) {
-              i {
-                background-color: #ff5959;
-              }
-            }
-            &:nth-child(4) {
-              i {
-                background-color: #fe8900;
-              }
-            }
-            &:nth-child(5) {
-              i {
-                background-color: #fed700;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+  @import "alarmSort";
 </style>
 <style lang="scss">
 .alarmSort {

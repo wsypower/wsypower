@@ -24,6 +24,18 @@ Vue.component("happy-scroll", HappyScroll);
 // 引入css
 import "vue-happy-scroll/docs/happy-scroll.css";
 
+import vuescroll from 'vuescroll';
+
+// 你可以在这里设置全局配置
+Vue.use(vuescroll, {
+  ops: {
+    bar: {
+      background: '#1c7dfa',
+    }
+  }, // 在这里设置全局默认配置
+  name: 'myScroll' // 在这里自定义组件名字，默认是vueScroll
+});
+
 //引入vueg 专场动画
 import vueg from "vueg";
 Vue.use(vueg, router);

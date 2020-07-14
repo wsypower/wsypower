@@ -2,62 +2,70 @@
     width: 100%;
     height: 100%;
     .grosschart__header{
-        height: 88px;
+        height: 76px;
         width: 100%;
-        background:url("img/titlebct.png") no-repeat 0 20px;
-        background-size: 160px 44px;
+        background:url("img/yxzl-title.png") no-repeat 30px 30px;
         position: relative;
         .grosschart__header_tabs{
             position: absolute;
-            right: 0;
-            bottom: -7px;
+            right: 20px;
+            bottom: 16px;
         }
     }
     .grosschart__content{
         width: 100%;
-        height: 425px;
-        background-color: #9cb492;
-        background: url("img/yunxingzongliangbc.png");
-        background-size: 100% 100%;
-        padding: 36px 0px 32px 30px;
+        height: 100%;
+        padding: 0px 0px 20px 30px;
         .grosschart__content_title{
-            height: 100%;
-            width: 354px;
+            height: 330px;
+            width: 100%;
             .grosschart__content_title_item{
                 width: 100%;
-                height: 60px;
-                background:url("img/title-item-bc.png") no-repeat;
+                height: 50px;
                 margin-bottom: 14px;
                 font-family: nums;
                 padding-right: 30px;
+                span{
+                    color: #fed700;
+                    font-size: 30px;
+                    font-family: nums;
+                    width: 148px;
+                    height: 46px;
+                    text-align: right;
+                }
                 @include last(1){
                     margin-bottom: 0;
                 }
             }
             .grosschart__content_title_item-shouli{
                 background:url("img/zongshouli.png") no-repeat;
+                background-size: 100% 100%;
             }
             .grosschart__content_title_item-lianshu{
                 background:url("img/lianshu.png") no-repeat;
+                background-size: 100% 100%;
             }
             .grosschart__content_title_item-chuzhishu{
                 background:url("img/chuzhishu.png") no-repeat;
+                background-size: 100% 100%;
             }
             .grosschart__content_title_item-anqichuzhishu{
                 background:url("img/anqichushishu.png") no-repeat;
+                background-size: 100% 100%;
             }
             .grosschart__content_title_jianshu{
                 background:url("img/jieanshu.png") no-repeat;
+                background-size: 100% 100%;
             }
         }
         .grosschart__content_chart{
-            height: 100%;
-            width: 380px;
+            height: 380px;
+            width: 357px;
             background: url("img/echartbc.png")no-repeat;
             background-size: 100%;
             flex-wrap: wrap;
             .grosschart__content_chart-item{
-                width: 190px;
+                width: 178px;
                 height: 178px;
             }
         }

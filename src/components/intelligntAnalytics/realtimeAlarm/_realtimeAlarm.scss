@@ -1,0 +1,64 @@
+.realtimeAlarm {
+  width: 580px;
+  height: 291px;
+  background: url("img/background.png") no-repeat;
+  background-size: 100% 100%;
+  .realtimeAlarm_header {
+    width: 100%;
+    height: 75px;
+    background: url("img/title.png") no-repeat 20px 25px;
+    padding-right:10px;
+  }
+  .realtimeAlarm_content {
+    width: 100%;
+    height: 215px;
+    padding: 8px 5px 0px 20px;
+    .ul-panel {
+      height: 240px;
+      width: 570px;
+      position: relative;
+      li {
+        height: 38px;
+        line-height: 38px;
+        margin-top: 4px;
+        list-style-type: none;
+        background-color: rgba(28, 125, 250, 0.2);
+        &:first-child {
+          margin-top: 0px;
+        }
+        span {
+          display: inline-block;
+          text-align: center;
+          font-family: PingFang-SC-Medium;
+          font-size: 14px;
+          letter-spacing: 0px;
+          color: #ffffff;
+          &:nth-child(1) {
+            width: 80px;
+            background: url("./img/table-one.png") no-repeat;
+            color: #000000;
+            i {
+              display: block;
+              text-align: left;
+              padding-left: 10px;
+            }
+          }
+          &:nth-child(2) {
+            width: 80px;
+          }
+          &:nth-child(3) {
+            width: 210px;
+          }
+          &:nth-child(4) {
+            width: 100px;
+            color: #ff5959;
+          }
+          &:nth-child(5) {
+            width: 70px;
+            color: #00c0ff;
+          }
+        }
+      }
+    }
+  }
+}

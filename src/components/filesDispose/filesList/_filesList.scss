@@ -1,26 +1,19 @@
 .filesList {
-    width: 440px;
-    height: 864px;
-    
+    width: 420px;
+    height: 100%;
+    background: url("./img/background.png") no-repeat;
+    background-size: 100% 100%;
     .header {
         width: 100%;
-        height: 44px;
-        margin-bottom: 12px;
-        
-        .title {
-            width: 160px;
-            height: 44px;
-            background: url("./img/anjuanlibiaotitle.png");
-        }
+        height: 75px;
+        background: url("./img/title.png") no-repeat 20px 25px;
     }
     
     .content {
         width: 100%;
-        height: 808px;
-        background: url("./img/anjuanlibiaobc.png") no-repeat;
+        height: 830px;
         overflow: hidden;
-        padding: 21px 20px 0 20px;
-        
+        padding: 15px 20px 0px 20px;
         .seamless-warp {
             width: 100%;
             height: 100%;

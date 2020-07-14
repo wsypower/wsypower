@@ -1,31 +1,51 @@
 .summarize {
     width: 100%;
     height: 100%;
+    background: url("img/neibg.png");
+    background-size: 100% 100%;
     .summarize_header{
         width: 100%;
-        height: 77px;
+        height: 76px;
+        .h-left{
+            width: 159px;
+            height: 40px;
+            background-image: linear-gradient(-90deg, #222eaa 0%, #222eaa 5%, transparent 5%,transparent 10%, #222eaa 10%, transparent 100%);
+        }
+        .h-right{
+            width: 159px;
+            height: 40px;
+            background-image: linear-gradient(90deg, #222eaa 0%, #222eaa 5%, transparent 5%,transparent 10%, #222eaa 10%, transparent 100%);
+        }
+    }
+    .summarize_main-content{
+        height:calc(100% - 76px);
+        width: 100%;
+        padding: 0px 20px 20px 20px;
+    }
+    .summarize_left{
+        height: 809px;
+        width: 386px;
+        background: url("img/summer-left-right.png");
+        background-size: 100% 100%;
     }
     .summarize_content{
-        width: 100%;
-        height: 513px;
+        width: 986px;
+        height: 100%;
         .summarize_content_map{
-            width: 1040px;
-            height: 100%;
-            margin-right: 42px;
+            width: 100%;
+            padding-top: 10px;
+            height: 560px;
         }
-        .summarize_content_icon{
-            margin-left: 10px;
-            width: 184px;
-            height: 100%;
-        }
-        .summarize_content_chart{
-            width: 780px;
-            height: 100%;
+        .summarize_footer{
+            width: 100%;
+            height: 242px;
+            background: url("img/summer-bottom.png");
         }
     }
-    .summarize_footer{
-        margin-top: 18px;
-        width: 100%;
-        height: 259px;
+    .summarize_right{
+        height: 809px;
+        width: 386px;
+        background: url("img/summer-left-right.png");
+        background-size: 100% 100%;
     }
 }

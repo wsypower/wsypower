@@ -1,22 +1,44 @@
 <template>
   <div class="building">
-    <div class="header">违章监控点TOP3</div>
+    <div class="header"></div>
     <div class="body">
-      <ul class="building-list">
-        <li class="building-li" v-for="(item,index) in list" :key="index">
-          <div class="image">
-            <img :src="item.pic_url" alt />
-          </div>
-          <div class="info">
-            <p>【违规类型】{{item.pro_name}}</p>
-            <p>【违规地点】{{item.camera_name}}</p>
-            <p>
-              【违规次数】
-              <span>{{item.num}}次</span>
-            </p>
-          </div>
-        </li>
-      </ul>
+      <my-scroll>
+        <ul class="building-list">
+          <li class="building-li" v-for="(item,index) in list" :key="index">
+            <div class="item-header" flex="cross:center">
+              <span class="iconfont icon-che"></span>
+              <div class="item-title" flex="cross:center">{{ item.carNumber }}</div>
+              <div class="item-timer" flex="cross:center">
+                {{ $formatDate(parseInt(item.createtime)) }}
+              </div>
+            </div>
+            <div class="item-content" flex="dir:left">
+              <div class="item-content-left">
+                <div class="statue" flex="main:center" v-if="item.dealstatus == 0">
+                  <span>未<br />处<br />理</span>
+                </div>
+                <div
+                  class="statue yichuli"
+                  flex="main:center"
+                  v-if="item.dealstatus == 1"
+                >
+                  <span>已<br />处<br />理</span>
+                </div>
+                <img :src="item.pic_url" alt />
+              </div>
+              <div class="info" flex="dir:top">
+                <div><span class="title">分类:</span>【{{item.big_type}}】</div>
+                <div>{{item.small_type}}</div>
+                <div class="sep-line"></div>
+                <div>
+                  <span class="title">描述:&nbsp;</span>
+                  <span>{{item.description}}</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </my-scroll>
     </div>
   </div>
 </template>
@@ -29,21 +51,30 @@ export default {
       list: [
         {
           "pic_url": require('./img/3.jpg'),
-          "pro_name": "机动车违停",
-          "camera_name": "某大厦1楼",
-          "num": "130"
+          "carNumber": "浙L88888",
+          "createtime": 1594709740823,
+          "big_type": "市容环境",
+          "small_type": "小类",
+          "description": "描述",
+          "dealstatus": 0
         },
         {
           "pic_url": require('./img/2.jpg'),
-          "pro_name": "垃圾堆放",
-          "camera_name": "白鹿鞋城",
-          "num": "106"
+          "carNumber": "浙L88888",
+          "createtime": 1594709740823,
+          "big_type": "市容环境",
+          "small_type": "小类",
+          "description": "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述",
+          "dealstatus": 1
         },
         {
           "pic_url": require('./img/1.jpg'),
-          "pro_name":"非机动车违停",
-          "camera_name": "底楼",
-          "num": "84"
+          "carNumber": "浙L88888",
+          "createtime": 1594709740823,
+          "big_type": "市容环境",
+          "small_type": "小类",
+          "description": "描述",
+          "dealstatus": 0
         }
       ]
     };
@@ -55,9 +86,14 @@ export default {
     getList() {
       this.axios.post("/bigscreen/getCameraTopThree").then(response => {
         console.log(response);
-        if(response.data.result.length>0){
-          this.list = response.data.result;
-        }
+        // if(response.data.result.length>0){
+        //   this.list = response.data.result;
+        // }
+        this.list.map(item => {
+          if(item.description.length>36){
+            item.description = item.description.substring(0,36) + '...';
+          }
+        });
       });
     }
   }
@@ -65,55 +101,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.building {
-  margin: 16px 0 0 20px;
-}
-.header {
-  height: 45px;
-  background: url("./img/title_back.png");
-  width: 266px;
-  font-size: 24px;
-  color: white;
-  text-align: center;
-  line-height: 45px;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-.body {
-  width: 592px;
-  height: 410px;
-  background: url("./img/back3.png") no-repeat;
-  padding: 10px;
-  background-size: contain;
-}
-.building-list {
-  padding: 10px;
-}
-.building-li {
-  display: flex;
-  border: 1px solid #0c3bb1;
-  background-color: rgba(27, 22, 87, 0.8);
-  color: #a09eb7;
-  margin-bottom: 10px;
-  .image {
-    width: 200px;
-    height: 120px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .info {
-    padding: 16px 10px 0 10px;
-  }
-  p {
-    margin: 0 0 12px 0;
-    span {
-      color: #a03a55;
-    }
-    &:last-child {
-      margin: 0;
-    }
-  }
-}
+@import "building";
 </style>

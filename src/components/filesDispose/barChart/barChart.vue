@@ -10,13 +10,13 @@
         </el-tabs>
       </div>
     </div>
-    <div class="bar_content" style="padding-top:10px;">
-      <div style="height:30px;width:100%;" flex="main:center cross:center">
-        <el-radio-group v-model="sjtype" @change="changeSJType">
-          <el-radio label="01">事件</el-radio>
-          <el-radio label="02">部件</el-radio>
-        </el-radio-group>
-      </div>
+    <div class="bar_content">
+      <!--<div style="height:30px;width:100%;" flex="main:center cross:center">-->
+        <!--<el-radio-group v-model="sjtype" @change="changeSJType">-->
+          <!--<el-radio label="01">事件</el-radio>-->
+          <!--<el-radio label="02">部件</el-radio>-->
+        <!--</el-radio-group>-->
+      <!--</div>-->
       <div id="barSource"></div>
     </div>
   </div>

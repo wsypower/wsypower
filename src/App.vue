@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  
+
   import Screen_header from "./components/index/screen_header/screen_header";
   import Screen_content from "./components/index/screen_content/screen_content";
 
@@ -30,18 +30,19 @@
     src: url('~common/fonts/KET.TTF')
   }
 
+  @font-face {
+    font-family: FZZCHJW;
+    src: url('~common/fonts/FZZZHONGHJW.TTF')
+  }
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 1920px;
     height: 1080px;
-    background: url("~common/img/blurred-bg.png");
+    background: url("~common/img/background.png");
     overflow: hidden;
-    .ceshi{
-      width: 100px;
-      height: 100px;
-      background-color: red;
-    }
+    position: relative;
   }
 </style>

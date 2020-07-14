@@ -108,8 +108,6 @@ export default {
 .panel {
   height: 128px;
   width: 638px;
-  margin-left: 20px;
-  margin-top: 56px;
   .content {
     width: 100%;
     height: 100%;

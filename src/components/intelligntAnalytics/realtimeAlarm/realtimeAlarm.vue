@@ -1,10 +1,10 @@
 <template>
   <div class="realtimeAlarm">
-    <div class="realtimeAlarm_header" flex="main:right"></div>
+    <div class="realtimeAlarm_header"></div>
     <div class="realtimeAlarm_content">
       <div class="ul-panel scroll-height">
-        <happy-scroll color="#073ec8" size="5" resize>
-          <ul style="width:548px;">
+        <my-scroll>
+          <ul>
             <li v-for="(item, index) in tableDataList" class="ul-body" :key="index">
               <span>
                 <i>{{ item.streetName }}</i>
@@ -20,7 +20,7 @@
               <span v-else>{{ item.statusName }}</span>
             </li>
           </ul>
-        </happy-scroll>
+        </my-scroll>
       </div>
     </div>
   </div>
@@ -93,77 +93,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.realtimeAlarm {
-  width: 591px;
-  height: 325px;
-  /*margin-right: 30px;*/
-  margin-top: 20px;
-  .realtimeAlarm_header {
-    width: 100%;
-    height: 56px;
-    background: url("./img/title.png") no-repeat;
-  }
-  .realtimeAlarm_content {
-    width: 100%;
-    height: 267px;
-    background: url("./img/background.png") no-repeat;
-    background-size: 100% 100%;
-    padding: 18px 5px 0px 16px;
-    .ul-panel {
-      height: 240px;
-      width: 570px;
-      position: relative;
-      li {
-        height: 38px;
-        line-height: 38px;
-        margin-top: 4px;
-        list-style-type: none;
-        background-color: rgba(28, 125, 250, 0.2);
-        &:first-child {
-          margin-top: 0px;
-        }
-        span {
-          display: inline-block;
-          text-align: center;
-          font-family: PingFang-SC-Medium;
-          font-size: 14px;
-          letter-spacing: 0px;
-          color: #ffffff;
-          &:nth-child(1) {
-            width: 80px;
-            background: url("./img/table-one.png") no-repeat;
-            color: #000000;
-            i {
-              display: block;
-              text-align: left;
-              padding-left: 10px;
-            }
-          }
-          &:nth-child(2) {
-            width: 80px;
-          }
-          &:nth-child(3) {
-            width: 210px;
-          }
-          &:nth-child(4) {
-            width: 100px;
-            color: #ff5959;
-          }
-          &:nth-child(5) {
-            width: 70px;
-            color: #00c0ff;
-          }
-        }
-      }
-    }
-  }
-}
+  @import "realtimeAlarm";
 </style>
 <style lang="scss">
 .realtimeAlarm {
   .scroll-height {
     .happy-scroll-container {
-      height: 240px !important;
+      height: 200px !important;
     }
   }
 }

@@ -1,0 +1,101 @@
+.building {
+  height: 622px;
+  width: 580px;
+  background: url("img/background.png") no-repeat;
+  background-size: 100% 100%;
+  .header {
+    width: 100%;
+    height: 75px;
+    background: url("img/title.png") no-repeat 20px 25px;
+    padding-right:10px;
+  }
+}
+
+.body {
+  width: 100%;
+  height: 547px;
+  .building-list {
+    padding: 10px 20px 20px 20px;
+    .building-li {
+      height: 257px;
+      width: 100%;
+      background-image: linear-gradient(90deg, rgba(37, 95, 207, 0.7), rgba(37, 95, 207, 0));
+      margin-bottom: 10px;
+      padding: 0px 20px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      .item-header {
+        width: 100%;
+        height: 57px;
+        .icon-che {
+          width: 21px;
+          color: #48daff;
+        }
+        .item-title {
+          margin-left: 10px;
+          height: 100%;
+          width: 200px;
+          color: #ffffff;
+          font-size: 18px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .item-timer {
+          color: #74c1fc;
+          font-size: 16px;
+        }
+      }
+      .item-content {
+        width: 100%;
+        .item-content-left {
+          width: 310px;
+          height: 180px;
+          position: relative;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+          .statue {
+            position: absolute;
+            width: 94px;
+            height: 134px;
+            top: -30px;
+            right: -10px;
+            background: url("./img/weichuli.png") no-repeat;
+            padding-top: 30px;
+            span {
+              z-index: 20;
+              color: #000;
+              font-size: 15px;
+              font-weight: 600;
+              @include center-translate(x)
+            }
+          }
+          .yichuli {
+            background: url("./img/yichuli.png") no-repeat;
+          }
+        }
+        .info {
+          padding-left: 20px;
+          width: 190px;
+          >div{
+            font-family: PingFang-SC-Medium;
+            font-size: 16px;
+            color: #74c1fc;
+            .title{
+              color: #ffffff;
+            }
+          }
+          .sep-line{
+            width: 100%;
+            height: 1px;
+            background-color: #0c2983;
+            margin: 18px 0px;
+          }
+        }
+      }
+    }
+  }
+}

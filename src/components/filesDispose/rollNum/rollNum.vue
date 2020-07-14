@@ -1,14 +1,14 @@
 <template>
   <div class="rollNum">
-    <div class="rollNum-header" flex="main:right">
-      <div class="navChartChange">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="月" name="月"></el-tab-pane>
-          <el-tab-pane label="年" name="年"></el-tab-pane>
-        </el-tabs>
-      </div>
-    </div>
-    <ul flex="dir:top">
+    <!--<div class="rollNum-header" flex="main:right">-->
+      <!--<div class="navChartChange">-->
+        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
+          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
+          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
+        <!--</el-tabs>-->
+      <!--</div>-->
+    <!--</div>-->
+    <ul flex="dir:left main:justify">
       <li flex="cross:center" v-for="item in dataList" :key="item.imgsrc">
         <div class="rollNum-roll" flex="cross:center">
           <div class="rollNum-roll-icon">

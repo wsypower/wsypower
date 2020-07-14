@@ -1,21 +1,26 @@
 <template>
   <div class="summarize">
-    <div class="summarize_header">
+    <div class="summarize_header" flex="dir:left cross:center main:center">
+      <div class="h-left"></div>
       <exponent></exponent>
+      <div class="h-right"></div>
     </div>
-    <div class="summarize_content" flex>
-      <div class="summarize_content_map">
-        <ol-map @click-Back="clickPrint"></ol-map>
-      </div>
-      <!--<div class="summarize_content_icon">-->
-        <!--<state-icon></state-icon>-->
-      <!--</div>-->
-      <div class="summarize_content_chart">
+    <div class="summarize_main-content" flex="dir:left cross:center main:justify">
+      <div class="summarize_left">
         <gross-chart></gross-chart>
       </div>
-    </div>
-    <div class="summarize_footer">
-      <introduce></introduce>
+      <div class="summarize_content" flex="dir:top cross:center main:justify">
+        <div class="summarize_content_map">
+          <!--<ol-map @click-Back="clickPrint"></ol-map>-->
+          <mainpage></mainpage>
+        </div>
+        <div class="summarize_footer">
+          <introduce></introduce>
+        </div>
+      </div>
+      <div class="summarize_right">
+        <introduce-two></introduce-two>
+      </div>
     </div>
   </div>
 </template>
@@ -23,13 +28,13 @@
 <script type="text/ecmascript-6">
 import Introduce from "../../components/summarize/introduce/introduce";
 import Exponent from "../../components/summarize/exponent/exponent";
-// import StateIcon from "../../components/summarize/stateIcon/stateIcon";
 import GrossChart from "../../components/summarize/grossChart/grossChart";
-//import Mainpage from "../../components/summarize/mapServe/MainPage";
+import Mainpage from "../../components/summarize/mapServe/MainPage";
 import olMap from "../../components/map/olMap";
+import IntroduceTwo from "../../components/summarize/introduce/two";
 export default {
   name: "summarize",
-  components: {olMap, GrossChart, Exponent, Introduce},
+  components: {olMap, GrossChart, Exponent, Introduce,IntroduceTwo, Mainpage},
   data() {
     return {
     }

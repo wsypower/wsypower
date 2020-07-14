@@ -96,7 +96,7 @@ export default {
             startAngle: 180,
             endAngle: 0,
             splitNumber: 4,
-            center: ["52%", "50%"], // 默认全局居中
+            center: ["50%", "50%"], // 默认全局居中
             axisLine: {
               // 坐标轴线
               lineStyle: {
@@ -148,7 +148,7 @@ export default {
               fontStyle: "italic",
               offsetCenter: [0, "33%"]
             },
-            center: ["52%", "50%"], // 默认全局居中
+            center: ["50%", "50%"], // 默认全局居中
             pointer: {
               show: false
             },

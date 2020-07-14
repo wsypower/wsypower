@@ -1,26 +1,23 @@
 <template>
-  <div class="screen_header" flex="main:justify">
+  <div class="screen_header" flex="dir:left cross:center main:justify">
     <div class="screen_header_left">
-      <el-cascader
-        ref="areaSlect"
-        :options="options"
-        v-model="selectedOptions"
-        change-on-select
-        @change="handleChange"
-      ></el-cascader>
+      普陀智慧城管平台
     </div>
-    <div class="screen_header_center">
-      <ul flex="cross:center main:center">
-        <li
-          flex="cross:center main:center"
-          v-for="(item, index) in navs"
-          :class="{ navactve: index == tabIndex }"
-          @click="goFileDeal(item, index)"
-        >
-          <img :src="item.imgsrc" alt />
-          {{ item.value }}
-        </li>
-      </ul>
+    <div class="screen_header_center" flex="dir:left cross:center main:justify">
+      <div class="screen_header_center-left"></div>
+      <div class="screen_header_center-main" flex="dir:left cross:center main:justify">
+        <div class="item" flex="dir:top cross:center"
+             v-for="(nav,index) in navs" :key="index"
+             :class="{ active: index == tabIndex }"
+             @click="goFileDeal(nav, index)">
+          <div class="item_icon" flex="cross:center main:center">
+            <span class="icon iconfont" :class="nav.className"></span>
+          </div>
+          <div class="none checked"></div>
+          <div class="item_text">{{nav.name}}</div>
+        </div>
+      </div>
+      <div class="screen_header_center-right"></div>
     </div>
     <div class="screen_header_right" flex="cross:center main:justify">
       <div class="screen_timer">{{ localTime }}</div>
@@ -40,68 +37,26 @@ export default {
       weekday: "",
       navs: [
         {
-          value: "辖区概况",
-          imgsrc: require("./img/xq.png"),
-          item: "/"
+          name: "辖区概况",
+          className: "icon-gaikuang",
+          path: "/"
         },
         {
-          value: "智慧物联",
-          imgsrc: require("./img/wulianwang.png"),
-          item: "/wisdomThings"
+          name: "案卷处理",
+          className: "icon-wenjian",
+          path: "/filesDispose"
         },
         {
-          value: "案卷处理",
-          imgsrc: require("./img/anjuanchuli.png"),
-          item: "/filesDispose"
+          name: "智能分析",
+          className: "icon-zhinengfenxidaoru",
+          path: "/intelligentAnalytics"
         },
         {
-          value: "智能分析",
-          imgsrc: require("./img/zhinengjiaoxue.png"),
-          item: "/intelligentAnalytics"
-        },
-        {
-          value: "应急指挥",
-          imgsrc: require("./img/yinjiyuan.png"),
-          item: "/mapiframe"
+          name: "专题分析",
+          className: "icon-zhuantibaodao",
+          path: "/mapiframe"
         }
       ],
-      options: [
-        {
-          value: "330921",
-          label: "岱山",
-          children: [
-            {
-              value: "330921001",
-              label: "高亭镇"
-            },
-            {
-              value: "33092106",
-              label: "衢山镇"
-            },
-            {
-              value: "13",
-              label: "东沙镇"
-            },
-            {
-              value: "14",
-              label: "岱西镇"
-            },
-            {
-              value: "15",
-              label: "长涂镇"
-            },
-            {
-              value: "16",
-              label: "岱东镇"
-            },
-            {
-              value: "16",
-              label: "秀山乡"
-            }
-          ]
-        }
-      ],
-      selectedOptions: ["330921", "330921001"]
     };
   },
   created() {
@@ -109,25 +64,8 @@ export default {
     this.grtLocalTime();
   },
   mounted() {},
-  computed: {
-    optionCode() {
-      return this.$store.state.optionCode;
-    }
-  },
-  watch: {
-    optionCode: function(old) {
-      if (this.selectedOptions.length == 1) {
-        this.selectedOptions.push(old);
-      } else {
-        if (old == "330921") {
-          this.selectedOptions = ["330921"];
-        } else {
-          this.selectedOptions = ["330921"];
-          this.selectedOptions.push(old);
-        }
-      }
-    }
-  },
+  computed: {},
+  watch: {},
   methods: {
     handleChange(value) {
       console.log(value[value.length - 1]);
@@ -135,9 +73,8 @@ export default {
     },
     goFileDeal(item, index) {
       this.tabIndex = index;
-      this.$router.push(item.item);
+      this.$router.push(item.path);
     },
-
     grtLocalTime() {
       let mydate = new Date();
       let myddy = mydate.getDay(); //获取存储当前日期
@@ -227,52 +164,5 @@ export default {
 @import "screen_header";
 </style>
 <style lang="scss">
-.el-input__inner {
-  background-color: transparent !important;
-  border-color: transparent !important;
-  font-size: 16px !important;
-  color: #fff !important;
-  padding-left: 20px !important;
-  line-height: 40px !important;
-}
-.el-cascader .el-icon-arrow-down {
-  color: #fff !important;
-  font-size: 18px !important;
-  line-height: 40px !important;
-}
-.el-cascader__label {
-  font-size: 18px !important;
-  color: #fff !important;
-  line-height: 40px !important;
-  padding-top: 3px !important;
-  text-align: center !important;
-  span {
-    color: #fff !important;
-  }
-  .el-cascader-menus {
-  }
-}
-.el-cascader-menu {
-  height: auto !important;
-  border-right: none !important;
-  background-color: transparent !important;
-}
-.el-cascader-menus {
-  border: 1px solid #0dfffd !important;
-  /*background-color: red!important;*/
-  background-color: rgba(19, 28, 99, 0.7) !important;
-}
-.popper__arrow {
-  border-bottom-color: transparent !important;
-}
-.el-popper[x-placement^="bottom"] .popper__arrow::after {
-  border-bottom-color: transparent !important;
-}
-.el-cascader-menu__item {
-  color: #fff !important;
-}
-.el-cascader-menu__item:focus:not(:active),
-.el-cascader-menu__item:hover {
-  background-color: #1668b4 !important;
-}
+
 </style>

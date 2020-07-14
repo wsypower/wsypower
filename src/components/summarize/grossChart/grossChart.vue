@@ -12,7 +12,7 @@
         <el-tab-pane label="本日" name="本日"></el-tab-pane>
       </el-tabs>
     </div>
-    <div class="grosschart__content" flex>
+    <div class="grosschart__content">
       <div class="grosschart__content_title">
         <div
           class="grosschart__content_title_item"
@@ -21,10 +21,15 @@
           :key="item.typeClass"
           :class="item.typeClass"
         >
-          <nums-digitroll :digits="item.digitroll"></nums-digitroll>
+          <countTo
+            :startVal="0"
+            :endVal="parseInt(item.digitroll)"
+            :duration="parseInt(item.digitroll)"
+          ></countTo>
+          <!--<nums-digitroll :digits="item.digitroll"></nums-digitroll>-->
         </div>
       </div>
-      <div class="grosschart__content_chart" flex>
+      <div class="grosschart__content_chart" flex="dir:left">
         <div
           class="grosschart__content_chart-item"
           v-for="item in instrument"
@@ -46,10 +51,10 @@
 <script type="text/ecmascript-6">
 import Instrument from "../instrument/instrument";
 import NumsDigitroll from "../numsDigitroll/numsDigitroll";
-
+import countTo from 'vue-count-to';
 export default {
   name: "grossChart",
-  components: {NumsDigitroll, Instrument},
+  components: {NumsDigitroll, Instrument, countTo},
   data(){
     return {
       //定时器
@@ -167,6 +172,7 @@ export default {
     height: 100%;
 
     .el-tabs__item {
+      padding: 0 10px;
       font-size: 18px;
       color: #8f9ac2;
     }

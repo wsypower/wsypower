@@ -1,0 +1,133 @@
+.introduce_two {
+    width: 100%;
+    height: 100%;
+    padding: 25px 29px 0px 29px;
+    box-sizing: border-box;
+    .introduce_item {
+        //height: 350px;
+        width: 100%;
+        box-sizing: border-box;
+        &:first-child{
+            .introduce_item-header{
+                height: 35px;
+                width: 100%;
+                background:url("img/xqgk.png") no-repeat 0px 0px;
+            }
+        }
+        &:nth-child(2){
+            .introduce_item-header{
+                height: 50px;
+                width: 100%;
+                background:url("img/gxxz.png") no-repeat 0px 0px;
+            }
+        }
+        @include last(1) {
+            margin-top: 10px;
+            margin-right: 0;
+            width: 100%;
+            padding-top: 12px;
+            height: 213px;
+            background: url("img/renkoumianji.png") no-repeat 100%;
+        }
+
+        .introduce_item_hierarchy_num{
+            color: #fed700;
+            font-size: 30px;
+            font-family: nums;
+            width: 148px;
+            height: 46px;
+            margin-left: 165px;
+        }
+    }
+
+    .introduce_item-bc {
+        background: url("img/fo-content-item.png") no-repeat 100%;
+    }
+
+    .introduce_item-back {
+        //height: 213px;
+        width: 100%;
+        padding-top: 10px;
+        .introduce_item-content{
+            flex-wrap: wrap;
+        }
+
+        .introduce_item_area {
+            width: 100px;
+            height: 38px;
+            background-color: #1c7dfa;
+            border-radius: 5px 0px 5px 0px;
+            color: #ffffff;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition:all .2s ;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+            //&:nth-child(8) {
+            //    margin-right: 0;
+            //}
+            &:hover {
+                background-color: #47D3FA;
+            }
+        }
+        .navactve{
+            background-color: #47D3FA;
+            box-shadow: 0px 0px 0px 4px #41d4fd78;
+            font-weight: 600;
+            font-size: 18px;
+        }
+    }
+
+    .introduce_item_pic {
+        width: 360px;
+        height: 213px;
+        border: 1px solid #1C7DFA;
+        margin-left: 78px;
+
+        .introduce_item_pic_wrap {
+            width: 358px;
+            height: 211px;
+        }
+    }
+
+    .introduce__item_infinite {
+        padding-left: 33px;
+        padding-right: 23px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        position: relative;
+    }
+
+    .seamless-warp {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .seamless-warp-point {
+        position: absolute;
+        height: 100%;
+        width: 7px;
+        background: url("img/yuandian.png") no-repeat 100%;
+        left: 35px;
+        top: 4px;
+
+    }
+    .item-point{
+        position: relative;
+        padding-left: 25px;
+        i{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #D3B762;
+            position: absolute;
+            top: 6px;
+            left: 1.6px;
+        }
+    }
+}

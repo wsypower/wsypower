@@ -1,7 +1,8 @@
 <template>
   <div class="map-container">
     <div class="map">
-      <ol-map @click-Back="clickPrint"></ol-map>
+      <!--<ol-map @click-Back="clickPrint"></ol-map>-->
+      <mainpage></mainpage>
     </div>
     <ul class="info-list" flex="main:justify">
       <li class="info-li" v-for="(item,index) in infoList" :key="index">
@@ -20,10 +21,12 @@
 
 <script>
 import olMap from "components/map/olMap";
+import Mainpage from "components/summarize/mapServe/MainPage";
 export default {
   name: "equipmentOnline",
   components: {
-    olMap
+    olMap,
+    Mainpage
   },
   data() {
     return {
@@ -112,10 +115,9 @@ export default {
 <style lang="scss" scoped>
 .map-container {
   width: 638px;
-  height: 672px;
+  height: 748px;
   position: relative;
-  margin: 20px 0 0 20px;
-  background: url("./img/middle_back.png");
+  background: url("./img/background.png");
   padding: 20px;
 }
 .map {

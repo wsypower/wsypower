@@ -1,16 +1,15 @@
 <template>
-  <div class="intelligentAnalytics" flex>
-    <div class="intelligentAnalytics_left" flex="dir:top">
+  <div class="intelligentAnalytics" flex="dir:left main:justify">
+    <div class="intelligentAnalytics_left" flex="dir:top main:justify">
       <quota></quota>
       <alarm-sort></alarm-sort>
       <realtime-alarm></realtime-alarm>
     </div>
-    <div flex="dir:top">
+    <div class="intelligentAnalytics_center" flex="dir:top main:justify">
       <equipment-num></equipment-num>
       <equipment-online></equipment-online>
     </div>
-    <!-- <files-list></files-list> -->
-    <div class="intelligentAnalytics_right">
+    <div class="intelligentAnalytics_right" flex="dir:top main:justify">
       <equipment-list></equipment-list>
       <illegal-building></illegal-building>
     </div>
@@ -41,8 +40,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.intelligentAnalytics {
-  height: 100%;
-  width: 100%;
-}
+  @import "intelligentAnalytics";
 </style>

@@ -1,8 +1,6 @@
 <template>
   <div class="panel">
-    <div class="header">
-      <div class="title" flex="cross:center main:center"></div>
-    </div>
+    <div class="header"></div>
     <div class="card-item">
       <card-item
         v-for="(item, index) in sourceList"
@@ -91,35 +89,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.panel {
-  height: 183px;
-  width: 591px;
-  .header {
-    width: 100%;
-    height: 44px;
-    margin-bottom: 12px;
-
-    .title {
-      width: 181px;
-      height: 44px;
-      background: url("img/title.png");
-    }
-  }
-  .card-item {
-    width: 100%;
-    height: 127px;
-    background: url("img/background.png") no-repeat;
-    background-size: 100% 100%;
-    padding-left: 20px;
-    .item {
-      margin-left: 20px;
-      margin-top: 26px;
-      &:first-child {
-        margin-left: 0px;
-      }
-    }
-  }
-}
+  @import "quota";
 </style>

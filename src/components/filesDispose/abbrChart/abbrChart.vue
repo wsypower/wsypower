@@ -11,7 +11,9 @@
         </el-tabs>
       </div>
     </div>
-    <div class="abbrChart-content" id="abbrChart"></div>
+    <div class="abbrChart-content" >
+      <div id="abbrChart"></div>
+    </div>
   </div>
 </template>
 

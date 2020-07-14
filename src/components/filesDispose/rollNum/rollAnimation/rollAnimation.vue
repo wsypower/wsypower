@@ -1,5 +1,5 @@
 <template>
-  <div class="rollAnimation">
+  <div class="rollAnimation" style="padding-top: 7px;">
     <div class="num-t-l" flex="main:center cross:center">
       <div class="waiyuan"></div>
       <div class="zhongyuan">

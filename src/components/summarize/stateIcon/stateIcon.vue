@@ -1,5 +1,5 @@
 <template>
-  <div class="stateIcon">
+  <div class="stateIcon" flex="dir:left">
     <div class="statue-item" v-for="item in dataList" :key="item.imgsrc" flex>
       <div class="statue-cion" flex="cross:center main:center">
         <img :src="item.imgsrc" alt="" />
@@ -33,54 +33,61 @@ export default {
       timer: 600000,
       dataList: [
         {
-          value: '街道',
+          value: '乡镇街道',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/xiangzhenjiedao.png'),
+          imgsrc: require('./img/xzjd.png'),
         },
         {
-          value: '监督员',
+          value: '社区数',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/shouliyuan.png'),
+          imgsrc: require('./img/sqs.png'),
         },
         {
-          value: '执法队员',
+          value: '受理员',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/zhifaduiyuan.png'),
+          imgsrc: require('./img/sly.png'),
         },
         {
           value: '监控数',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/jiankongshu.png'),
+          imgsrc: require('./img/jks.png'),
+        },
+        {
+          value: '网格数',
+          grand: 0,
+          datacreatVal: 0,
+          datacreat: 0,
+          imgsrc: require('./img/wgs.png'),
+        },
+        {
+          value: '执法队员',
+          grand: 0,
+          datacreatVal: 0,
+          datacreat: 0,
+          imgsrc: require('./img/zfdy.png'),
         },
         {
           value: '执法车辆',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/zhifacheliang.png'),
+          imgsrc: require('./img/zfcl.png'),
         },
         {
-          value: '路灯数',
+          value: '协管人员',
           grand: 0,
           datacreatVal: 0,
           datacreat: 0,
-          imgsrc: require('./img/ludengzhaoming.png'),
-        },
-        {
-          value: '部件总数',
-          grand: 0,
-          datacreatVal: 0,
-          datacreat: 0,
-          imgsrc: require('./img/bujian.png'),
-        },
+          imgsrc: require('./img/xgry.png'),
+        }
       ]
     }
   },

@@ -1,15 +1,13 @@
 <template>
-  <div class="filesDispose" flex>
-    <div class="filesDispose_left" flex="dir:top">
-      <roll-num></roll-num>
+  <div class="filesDispose" flex="main:justify">
+    <div class="filesDispose_left" flex="dir:top cross:center main:justify">
       <pie-chart></pie-chart>
+      <bar-chart></bar-chart>
+      <pie-title></pie-title>
     </div>
-    <div flex="dir:top">
+    <div flex="dir:top cross:center main:justify">
+      <roll-num></roll-num>
       <abbr-chart></abbr-chart>
-      <div flex="dir:left">
-        <bar-chart></bar-chart>
-        <pie-title></pie-title>
-      </div>
     </div>
     <files-list></files-list>
   </div>
