@@ -13,14 +13,16 @@
         }
     }
     .bar_content{
-        width: 100%;
+        width: 445px;
         height: 208px;
         padding: 10px 10px 0px 10px;
-        //background: url("img/background1.png") no-repeat;
-        //background-size: 100% 100%;
+        .nodata-text{
+            font-size: 26px;
+            color: #cccccc;
+        }
         #barSource{
             height: 198px;
-            width: 100%;
+            width: 425px;
         }
     }
 }

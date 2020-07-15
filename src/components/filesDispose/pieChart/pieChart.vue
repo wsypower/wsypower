@@ -1,16 +1,18 @@
 <template>
   <div class="pieChart">
-    <div class="pie_header" flex="main:right">
-      <div class="navChartChange">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="总计" name="总计"></el-tab-pane>
-          <el-tab-pane label="日" name="日"></el-tab-pane>
-          <el-tab-pane label="月" name="月"></el-tab-pane>
-          <el-tab-pane label="年" name="年"></el-tab-pane>
-        </el-tabs>
-      </div>
-    </div>
-    <div class="pie_content" id="pieSource"></div>
+    <div class="pie_header"></div>
+    <!--<div class="pie_header" flex="main:right">-->
+      <!--<div class="navChartChange">-->
+        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
+          <!--<el-tab-pane label="总计" name="总计"></el-tab-pane>-->
+          <!--<el-tab-pane label="日" name="日"></el-tab-pane>-->
+          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
+          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
+        <!--</el-tabs>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div v-show="updata.length===0" class="pie_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
+    <div v-show="updata.length!==0" class="pie_content" id="pieSource"></div>
   </div>
 </template>
 
@@ -25,14 +27,7 @@ export default {
       interval: '',
       //定时器时间
       timer:600000,
-      updata: [
-        {value: 75, name: '城管上报'},
-        {value: 75, name: '市民通上报'},
-        {value: 75, name: '城管通上报'},
-        {value: 75, name: '热线上报'},
-        {value: 75, name: '视频监控'},
-        {value: 75, name: '其他'},
-      ]
+      updata: []
     }
   },
   created() {
@@ -45,10 +40,13 @@ export default {
     optionCode() {
       return this.$store.state.optionCode;
     },
+    userId(){
+      return this.$store.state.userId;
+    }
   },
   watch: {
-    optionCode: function (old) {
-      this.cycleTime(old)
+    optionCode: function () {
+      this.cycleTime()
     },
   },
   methods: {
@@ -68,20 +66,20 @@ export default {
       }
       this.cycleTime()
     },
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval)
-      this.acquire(placecode)
+      this.acquire()
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.acquire(placecode)
+        this.acquire()
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode) {
+    acquire() {
       this.axios.post('/bigscreen/eventSource', this.qs.stringify({
-        placecode: placecode,
-        type: this.type
+        userId: this.userId,
+        placecode: this.optionCode,
+        // type: this.type
       })).then(function (response) {
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
           this.updata = response.data.result.map((item) => {
@@ -132,8 +130,8 @@ export default {
 
             console.log('arrA',arrA);
             this.updata = arrA;
+            this.pieChartInit();
           }
-          this.pieChartInit();
         }
       }.bind(this))
         .catch(function (error) {

@@ -64,17 +64,9 @@ import StateIcon from "../stateIcon/stateIcon";
 export default {
   name: "introduceTwo",
   components: {countTo, StateIcon},
-  mounted() {
-    //this.uplodData(this.$store.state.optionCode)
-  },
-  created() {
-
-  },
-  watch: {
-    // optionCode: function (val) {
-    //   this.uplodData(val)
-    // },
-  },
+  mounted() {},
+  created() {},
+  watch: {},
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
@@ -90,39 +82,39 @@ export default {
       return [
         {
           value: '普陀山镇',
-          code: '330921001'
+          code: '330903106'
         },
         {
           value: '六横镇',
-          code: '330921106'
+          code: '330903100'
         },
         {
           value: '桃花镇',
-          code: '330921101'
+          code: '330903104'
         },
         {
           value: '虾峙镇',
-          code: '330921103'
+          code: '330903102'
         },
         {
           value: '东极镇',
-          code: '330921105'
+          code: '330903105'
         },
         {
           value: '沈家门街道',
-          code: '330921102'
+          code: '330903001'
         },
         {
           value: '东港街道',
-          code: '330921200'
+          code: '330903003'
         },
         {
           value: '朱家尖街道',
-          code: '330921200'
+          code: '330903004'
         },
         {
           value: '展茅街道',
-          code: '330921200'
+          code: '330903005'
         }
       ]
     }
@@ -164,16 +156,8 @@ export default {
       this.cityarea.endVal = area.area
     },
     areaClick(val, code) {
-      console.log(val)
-      console.log(code)
-      // if(code!=='330921001'){
-      //
-      // }
-      // else{
         this.$store.commit('setOption', code)
-      // }
-
-    },
+    }
   },
 }
 </script>

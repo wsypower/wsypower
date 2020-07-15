@@ -12,7 +12,7 @@
           <countTo
             :startVal="item.datacreatVal"
             :endVal="item.datacreat"
-            :duration="item.endVal"
+            :duration="2000"
           ></countTo>
         </div>
       </div>
@@ -101,25 +101,29 @@ export default {
     optionCode(){
       return this.$store.state.optionCode;
     },
+    userId(){
+      return this.$store.state.userId;
+    }
   },
   watch: {
-    optionCode: function (old){
-      this.cycleTime(old)
+    optionCode: function (){
+      this.cycleTime()
     },
   },
   methods: {
-    cycleTime(placecode){
+    cycleTime(){
       clearInterval(this.interval)
-      this.acquire(placecode)
+      this.acquire()
       this.interval = setInterval(() => {
-        this.acquire(placecode)
+        this.acquire()
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode){
+    acquire(){
       this.axios.post('/bigscreen/areaSituation', this.qs.stringify({
-        placecode: placecode,
+        userId: this.userId,
+        placecode: this.optionCode
       })).then(function (response){
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
           let upData = this.dataList;

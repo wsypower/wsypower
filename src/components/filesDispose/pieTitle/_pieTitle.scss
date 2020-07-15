@@ -13,7 +13,11 @@
         }
     }
     .pieTitle_content{
-        width: 100%;
+        width: 445px;
         height: 208px;
+        .nodata-text{
+            font-size: 26px;
+            color: #cccccc;
+        }
     }
 }

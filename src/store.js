@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    optionCode: "330921001",
-    optionCodeDeful: "330921001",
+    optionCode: "330903",
+    userId: '',
     pageIndex: 0,
     iframeUrl: null || localStorage.getItem("iframeUrl")
   },
@@ -14,6 +14,10 @@ export default new Vuex.Store({
     setOption(state, updata) {
       state.optionCode = updata;
       localStorage.setItem("optionCode", updata);
+    },
+    setUserId(state, updata) {
+      state.userId = updata;
+      localStorage.setItem("userId", updata);
     },
     setIframeUrl(state, updata) {
       state.iframeUrl = updata;

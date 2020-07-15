@@ -1,22 +1,18 @@
 <template>
   <div class="barChart">
-    <div class="bar_header" flex="main:right">
-      <div class="navChartChange">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="总计" name="总计"></el-tab-pane>
-          <el-tab-pane label="日" name="日"></el-tab-pane>
-          <el-tab-pane label="月" name="月"></el-tab-pane>
-          <el-tab-pane label="年" name="年"></el-tab-pane>
-        </el-tabs>
-      </div>
-    </div>
-    <div class="bar_content">
-      <!--<div style="height:30px;width:100%;" flex="main:center cross:center">-->
-        <!--<el-radio-group v-model="sjtype" @change="changeSJType">-->
-          <!--<el-radio label="01">事件</el-radio>-->
-          <!--<el-radio label="02">部件</el-radio>-->
-        <!--</el-radio-group>-->
+    <div class="bar_header"></div>
+    <!--<div class="bar_header" flex="main:right">-->
+      <!--<div class="navChartChange">-->
+        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
+          <!--<el-tab-pane label="总计" name="总计"></el-tab-pane>-->
+          <!--<el-tab-pane label="日" name="日"></el-tab-pane>-->
+          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
+          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
+        <!--</el-tabs>-->
       <!--</div>-->
+    <!--</div>-->
+    <div v-show="xData.length===0" class="bar_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
+    <div v-show="xData.length!==0" class="bar_content">
       <div id="barSource"></div>
     </div>
   </div>
@@ -47,11 +43,14 @@ export default {
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
+    },
+    userId(){
+      return this.$store.state.userId;
     }
   },
   watch: {
-    optionCode: function(old) {
-      this.cycleTime(old);
+    optionCode: function() {
+      this.cycleTime();
     }
   },
   methods: {
@@ -76,37 +75,35 @@ export default {
       this.sjtype = val;
       this.cycleTime();
     },
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval);
-      this.acquire(placecode);
+      this.acquire();
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.acquire(placecode);
+        this.acquire();
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode) {
+    acquire() {
       this.axios
         .post(
           "/bigscreen/eventType",
           this.qs.stringify({
-            placecode: placecode,
+            userId: this.userId,
+            placecode: this.optionCode,
             top: 5,
-            sjtype: this.sjtype,
-            type: this.type
+            // sjtype: this.sjtype,
+            // type: this.type
           })
         )
         .then(
           function(response) {
-            if (response.data.code !== "0") {
+            if (response.data.code !== 0) {
               console.log(response);
             } else {
-              // response.data.result.map((item) => {
-              //   xData.push(item.type)
-              //   datalist2.push(item.count)
-              // })
               this.xData = response.data.result[0];
               this.datalist2 = response.data.result[1];
-              this.pieChartInit();
+              if(this.xData.length>0){
+                this.pieChartInit();
+              }
             }
           }.bind(this)
         )
@@ -125,9 +122,7 @@ export default {
         tooltip: {
           show: "true",
           trigger: "item",
-          // backgroundColor: 'rgba(0,0,0,0.7)', // 背景
           padding: [8, 10], //内边距
-          // extraCssText: 'box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);', //添加阴影
           formatter: function(params) {
             if (params.seriesName != "") {
               return params.name + " ：" + params.value;

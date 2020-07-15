@@ -84,31 +84,33 @@ export default {
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   watch: {
-    optionCode: function (val) {
-      this.cycleTime(val)
+    optionCode: function () {
+      this.cycleTime()
     }
   },
   methods: {
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval)
-      this.acquire(placecode)
+      this.acquire()
       this.interval = setInterval(() => {
-        console.log('执行一次')
-        this.acquire(placecode)
+        this.acquire()
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode) {
+    acquire() {
       this.axios.post('/bigscreen/eventDetails', this.qs.stringify({
-        placecode: placecode,
+        userId: this.userId,
+        placecode: this.optionCode,
         top: 10
       })).then(function (response) {
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
-          // console.log(response.data.result)
           this.listData = response.data.result
         }
       }.bind(this))

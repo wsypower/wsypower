@@ -100,36 +100,37 @@ export default {
       this.getUrlParams();
       let userId = this.params.userId;
       console.log(userId);
-      this.axios
-        .post(
-          "/bigscreen/countyList",
-          this.qs.stringify({
-            userId: userId
-          })
-        )
-        .then(
-          function(response) {
-            console.log(response);
-            if (response.data.code !== "0") {
-              // console.log(111)
-              console.log(response);
-            } else {
-              // console.log(response.data.result)
-              this.options = [];
-              this.options.push(response.data.result);
-              this.selectedOptions = ["330921", "330921001"];
-              this.$store.commit("setOption", "330921001");
-              // this.selectedOptions.push(response.data.result.value);
-              // this.$store.commit('setOption', response.data.result.value);
-              // console.log('this.selectedOptions',this.selectedOptions);
-            }
-          }.bind(this)
-        )
-        .catch(
-          function(error) {
-            console.log(error);
-          }.bind(this)
-        );
+      this.$store.commit("setUserId", userId);
+      // this.axios
+      //   .post(
+      //     "/bigscreen/countyList",
+      //     this.qs.stringify({
+      //       userId: userId
+      //     })
+      //   )
+      //   .then(
+      //     function(response) {
+      //       console.log(response);
+      //       if (response.data.code !== "0") {
+      //         // console.log(111)
+      //         console.log(response);
+      //       } else {
+      //         // console.log(response.data.result)
+      //         this.options = [];
+      //         this.options.push(response.data.result);
+      //         this.selectedOptions = ["330921", "330921001"];
+      //         this.$store.commit("setOption", "330921001");
+      //         // this.selectedOptions.push(response.data.result.value);
+      //         // this.$store.commit('setOption', response.data.result.value);
+      //         // console.log('this.selectedOptions',this.selectedOptions);
+      //       }
+      //     }.bind(this)
+      //   )
+      //   .catch(
+      //     function(error) {
+      //       console.log(error);
+      //     }.bind(this)
+      //   );
     },
     getUrlParams(prop) {
       let params = {},

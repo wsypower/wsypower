@@ -10,7 +10,8 @@
         </el-tabs>
       </div>
     </div>
-    <div class="pieTitle_content" id="areaSource"></div>
+    <div v-show="resultData.length===0" class="pieTitle_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
+    <div v-show="resultData.length!==0" class="pieTitle_content" id="areaSource"></div>
   </div>
 </template>
 
@@ -25,12 +26,7 @@ export default {
       interval: '',
       //定时器时间
       timer: 600000,
-      //监听header
-      xData: ['越城区', '柯桥区', '上虞区', '新昌县', '嵊州市', '诸暨市',],//名字
-      name: ["上报数", "立案数", "处置数"],
-      datalist1: [],//立按数
-      datalist2: [],//处置数
-      datalist3: [],//结案数
+      resultData: []
     }
   },
   created() {
@@ -38,16 +34,18 @@ export default {
   },
   mounted() {
     this.cycleTime()
-    console.log(this.optionCode)
   },
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
     },
+    userId() {
+      return this.$store.state.userId;
+    }
   },
   watch: {
-    optionCode: function (old) {
-      this.cycleTime(old)
+    optionCode: function () {
+      this.cycleTime()
     },
   },
   methods: {
@@ -67,31 +65,34 @@ export default {
       }
       this.cycleTime();
     },
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval)
-      this.acquire(placecode)
+      this.acquire()
       this.interval = setInterval(() => {
-        this.acquire(placecode)
+        this.acquire()
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode) {
+    acquire() {
       this.axios.post('/bigscreen/eventStatistics', this.qs.stringify({
-        placecode: placecode,
+        userId: this.userId,
+        placecode: this.optionCode,
         top: 6,
         type: this.type
       })).then(function (response) {
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
           console.log(response.data.result)
           let r = response.data.result;
-          let data = [];
+          this.resultData = [];
           for(let i=0;i<r.length;i++){
             let total = r[i].czs + r[i].las + r[i].jas,
-                item = {'name': '岱山县'+ r[i].name,'value': total,'value2': r[i].las,'value3': r[i].czs,'value4': r[i].jas};
-            data.push(item);
+                item = {'name': r[i].name,'value': total,'value2': r[i].las,'value3': r[i].czs,'value4': r[i].jas};
+            this.resultData.push(item);
           }
-          this.pieChartInit(data);
+          if(this.resultData.length>0){
+            this.pieChartInit(this.resultData);
+          }
         }
       }.bind(this))
         .catch(function (error) {
@@ -99,6 +100,7 @@ export default {
         }.bind(this));
     },
     pieChartInit: function (data) {
+      console.log('pieTitle',data);
       // let data = [{'name':'岱山县高亭镇','value': 30,'value2': 10,'value3': 10,'value4': 10},
       //   {'name':'岱山县衢山镇','value': 40,'value2': 20,'value3': 10,'value4': 10},
       //   {'name':'岱山县东沙镇','value': 50,'value2': 30,'value3': 10,'value4': 10},

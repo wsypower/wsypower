@@ -65,33 +65,35 @@ export default {
     optionCode(){
       return this.$store.state.optionCode;
     },
+    userId(){
+      return this.$store.state.userId;
+    }
   },
   watch: {
-    optionCode: function (val){
-      this.cycleTime(val);
-    },
+    optionCode: function (){
+      this.cycleTime();
+    }
   },
   created(){
     this.timer = SCREEN_CONFIG.setTimer
   },
   mounted(){
-    this.cycleTime(this.optionCode);
+    this.cycleTime();
   },
   methods:{
-    cycleTime(placecode){
+    cycleTime(){
       clearInterval(this.interval);
-      this.getDataList(placecode);
+      this.getDataList();
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.getDataList(placecode)
+        this.getDataList()
       }, this.timer);
     },
-    getDataList(val){
-      console.log('optionCode',val);
+    getDataList(){
       this.axios.post('/bigscreen/getCGFiveExpornet', this.qs.stringify({
-        placecode: this.optionCode
+        placecode: this.optionCode,
+        userId: this.userId
       })).then(function (response){
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
           console.log('getCGFiveExpornet',response.data);

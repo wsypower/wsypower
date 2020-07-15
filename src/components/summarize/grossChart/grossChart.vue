@@ -23,8 +23,8 @@
         >
           <countTo
             :startVal="0"
-            :endVal="parseInt(item.digitroll)"
-            :duration="parseInt(item.digitroll)"
+            :endVal="item.digitrollNum"
+            :duration="2000"
           ></countTo>
           <!--<nums-digitroll :digits="item.digitroll"></nums-digitroll>-->
         </div>
@@ -50,11 +50,11 @@
 
 <script type="text/ecmascript-6">
 import Instrument from "../instrument/instrument";
-import NumsDigitroll from "../numsDigitroll/numsDigitroll";
+// import NumsDigitroll from "../numsDigitroll/numsDigitroll";
 import countTo from 'vue-count-to';
 export default {
   name: "grossChart",
-  components: {NumsDigitroll, Instrument, countTo},
+  components: {Instrument, countTo},
   data(){
     return {
       //定时器
@@ -106,6 +106,9 @@ export default {
     optionCode(){
       return this.$store.state.optionCode;
     },
+    userId(){
+      return this.$store.state.userId;
+    }
   },
   watch: {
     optionCode: function (){
@@ -133,22 +136,23 @@ export default {
       clearInterval(this.interval)
       this.acquire()
       this.interval = setInterval(() => {
-        // console.log('执行一次')
         this.acquire()
       }, this.timer);
     },
-    acquire(placecode = this.$store.state.optionCode){
-      console.log('this.$store.state.optionCode',this.$store.state.optionCode)
+    acquire(){
       this.axios.post('/bigscreen/eventCount', this.qs.stringify({
-        placecode: placecode,
+        userId: this.userId,
+        placecode: this.optionCode,
         type: this.type
       })).then(function (response){
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
-          console.log(response.data.result.rateData)
           this.instrument = response.data.result.rateData;
-          this.titleName = response.data.result.countData;
+          this.titleName = response.data.result.countData.map(item => {
+            item.digitrollNum = parseInt(item.digitroll)
+            return item
+          });
         }
       }.bind(this))
     },

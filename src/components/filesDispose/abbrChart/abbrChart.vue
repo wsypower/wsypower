@@ -37,10 +37,13 @@ export default {
     optionCode() {
       return this.$store.state.optionCode;
     },
+    userId() {
+      return this.$store.state.userId;
+    }
   },
   watch: {
-    optionCode: function (val) {
-      this.acquire(val);
+    optionCode: function () {
+      this.acquire();
     },
   },
   created() {
@@ -69,18 +72,19 @@ export default {
       }
       this.acquire();
     },
-    acquire(placecode = this.$store.state.optionCode) {
+    acquire() {
       this.axios.post('/bigscreen/eventArea', this.qs.stringify({
-        placecode: '330921',
+        userId: this.userId,
+        placecode: this.optionCode,
         top: 1,
         type: this.type
       })).then(function (response) {
-        if (response.data.code !== '0') {
+        if (response.data.code !== 0) {
           console.log(response)
         } else {
-          this.hours = response.data.result.xData
-          this.title = response.data.result.yData
-          this.data = response.data.result.zData
+          this.hours = response.data.result.xData;
+          this.title = response.data.result.yData;
+          this.data = response.data.result.zData;
           this.pieChartInit()
         }
       }.bind(this))
