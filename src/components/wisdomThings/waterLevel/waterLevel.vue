@@ -431,13 +431,13 @@ export default {
       else if(tab.label==='长河和谐路口'){
         this.deviceId = 'd6e69a20a95611ea15b9151fdbd84f14';
         this.address = '长河路与和谐路交叉路口';
-        this.waterWarnLevel = 2.5;
+        this.waterWarnLevel = 1.8;
         this.getData();
       }
       else {
         this.deviceId = '82caa930a95711ea15b9151fdbd84f14';
         this.address = '长河路与育才路交叉路口';
-        this.waterWarnLevel = 2.5;
+        this.waterWarnLevel = 1.75;
         this.getData();
       }
     },
