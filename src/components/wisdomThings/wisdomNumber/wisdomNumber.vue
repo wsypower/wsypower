@@ -49,7 +49,7 @@
         <div class="wisdom-info">
           <p>- 水位监控 -</p>
           <div>
-            <span>2</span> 个
+            <span>4</span> 个
           </div>
         </div>
       </li>
