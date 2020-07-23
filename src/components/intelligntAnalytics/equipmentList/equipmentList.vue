@@ -31,13 +31,13 @@ export default {
           normal: 60,
           deviceType: "sp"
         },
-        {
-          name: "高空瞭望",
-          icon: "icon-wangyuanj",
-          total: 4,
-          normal: 4,
-          deviceType: "gklw"
-        },
+        // {
+        //   name: "高空瞭望",
+        //   icon: "icon-wangyuanj",
+        //   total: 4,
+        //   normal: 4,
+        //   deviceType: "gklw"
+        // },
         {
           name: "执法车辆",
           icon: "icon-che",
@@ -57,14 +57,15 @@ export default {
           total: 164,
           normal: 160,
           deviceType: "mobile"
-        },
-        {
-          name: "车载一体机",
-          icon: "icon-shebei1",
-          total: 20,
-          normal: 16,
-          deviceType: "cz"
         }
+        // ,
+        // {
+        //   name: "车载一体机",
+        //   icon: "icon-shebei1",
+        //   total: 20,
+        //   normal: 16,
+        //   deviceType: "cz"
+        // }
         // ,
         // {
         //   name: "智能路灯",
@@ -113,21 +114,30 @@ export default {
   mounted() {
     this.getNumber();
   },
+  computed: {
+    optionCode() {
+      return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
+    }
+  },
   methods: {
     getNumber() {
-      this.axios.get("/iot/device/state").then(response => {
-        let data = response.data.result.list;
+      this.axios.get("/bigscreen/getEquipments?placecode="
+                  + this.optionCode
+                  + "&userId=" + this.userId
+                  + "&_t=" + new Date().getTime()).then(response => {
+        let data = response.data.result[0];
         console.log("data1", data);
-        let vmData = this.equipments;
-        for (let i = 0; i < data.length; i++) {
-          for (let j = 0; j < vmData.length; j++) {
-            if (data[i].deviceType == vmData[j].deviceType) {
-              vmData[j].total = data[i].deviceCount;
-              vmData[j].normal = data[i].normalCount;
-            }
-          }
-        }
-        this.equipments = vmData;
+        this.equipments[0].total = data.spjkzs;
+        this.equipments[0].normal = data.spjkzcs;
+        this.equipments[1].total = data.zfclzs;
+        this.equipments[1].normal = data.zfclzcs;
+        this.equipments[2].total = data.dbzs;
+        this.equipments[2].normal = data.dbzcs;
+        this.equipments[3].total = data.ydzdzs;
+        this.equipments[3].normal = data.ydzdzcs;
       });
     }
   }

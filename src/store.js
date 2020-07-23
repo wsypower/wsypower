@@ -25,6 +25,7 @@ export default new Vuex.Store({
     },
     setPageIndex(state, updata) {
       state.pageIndex = updata;
+      localStorage.setItem("pageIndex", updata);
     }
   },
   actions: {}

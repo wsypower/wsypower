@@ -7,17 +7,17 @@
           <ul>
             <li v-for="(item, index) in tableDataList" class="ul-body" :key="index">
               <span>
-                <i>{{ item.streetName }}</i>
+                <i>{{ item.street }}</i>
               </span>
-              <span>{{ item.time }}</span>
-              <span>{{ item.address }}</span>
-              <span>{{ item.type }}</span>
-              <span v-if="item.statusName == '未处理'" style="color:#ff5959">
+              <span>{{ item.createtime.substring(11) }}</span>
+              <span :title="item.address">{{ item.address }}</span>
+              <span :title="item.subtype">{{ item.subtype }}</span>
+              <span v-if="item.status == '未处理'" style="color:#ff5959">
                 {{
-                item.statusName
+                item.status
                 }}
               </span>
-              <span v-else>{{ item.statusName }}</span>
+              <span v-else>{{ item.status }}</span>
             </li>
           </ul>
         </my-scroll>
@@ -48,45 +48,41 @@ export default {
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   watch: {
-    optionCode: function(val) {
-      this.cycleTime(val);
+    optionCode: function() {
+      this.cycleTime();
     }
   },
   methods: {
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval);
-      this.acquire(placecode);
+      this.acquire();
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.acquire(placecode);
+        this.acquire();
       }, this.timer);
     },
-    acquire(placecode) {
+    acquire() {
       let _this = this;
-      this.axios
-        .get(
-          "/bigscreen/getRealTimeAlarmDataList?placecode=" +
-            placecode +
-            "&_t=" +
-            new Date().getTime()
-        )
-        .then(
-          function(response) {
-            if (response.data.code !== "0") {
-              console.log(response);
-            } else {
-              _this.tableDataList = response.data.result;
-            }
-          }.bind(this)
-        )
-        .catch(
-          function(error) {
-            console.log(error);
-          }.bind(this)
-        );
+      this.axios.post('/bigscreen/getList', this.qs.stringify({
+        userId: this.userId,
+        placecode: this.optionCode,
+        top: 1000
+      })).then(function (response){
+        if (response.data.code !== 0) {
+          console.log(response)
+        } else {
+          console.log('getList', response);
+          _this.tableDataList = response.data.result;
+        }
+      }.bind(this))
+        .catch(function (error){
+          console.log(error)
+        }.bind(this));
     }
   }
 };
@@ -94,13 +90,4 @@ export default {
 
 <style scoped lang="scss">
   @import "realtimeAlarm";
-</style>
-<style lang="scss">
-.realtimeAlarm {
-  .scroll-height {
-    .happy-scroll-container {
-      height: 200px !important;
-    }
-  }
-}
 </style>

@@ -30,8 +30,8 @@
                 <span>
                   <i>{{ index + 1 }}</i>
                 </span>
-                <span>{{ item.type }}</span>
-                <span>{{ item.num }}</span>
+                <span>{{ item.name }}</span>
+                <span>{{ item.count }}</span>
               </li>
             </ul>
           </my-scroll>
@@ -60,16 +60,19 @@ export default {
     this.timer = SCREEN_CONFIG.setTimer;
   },
   mounted() {
-    this.cycleTime(this.optionCode);
+    this.cycleTime();
   },
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   watch: {
-    optionCode: function(val) {
-      this.cycleTime(val);
+    optionCode: function() {
+      this.cycleTime();
     }
   },
   methods: {
@@ -87,47 +90,38 @@ export default {
       if (tab.label == "总计") {
         this.type = 4;
       }
-      this.cycleTime(this.optionCode);
+      this.cycleTime();
     },
     changeSJType(val) {
       console.log("changeSJType", this.sjtype, val);
-      this.cycleTime(this.optionCode);
+      this.cycleTime();
     },
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval);
-      this.acquire(placecode);
+      this.acquire();
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.acquire(placecode);
+        this.acquire();
       }, this.timer);
     },
-    acquire(placecode) {
+    acquire() {
       let _this = this;
-      this.axios
-        .get(
-          "/bigscreen/getAlarmSortDataList?placecode=" +
-            placecode +
-            "&type=" +
-            this.type +
-            "&sjtype=" +
-            this.sjtype +
-            "&_t=" +
-            new Date().getTime()
-        )
-        .then(
-          function(response) {
-            if (response.data.code !== "0") {
-              console.log(response);
-            } else {
-              _this.tableDataList = response.data.result;
-            }
-          }.bind(this)
-        )
-        .catch(
-          function(error) {
-            console.log(error);
-          }.bind(this)
-        );
+      this.axios.post('/bigscreen/getQXTopType', this.qs.stringify({
+        userId: this.userId,
+        placecode: this.optionCode,
+        top: 1000,
+        type: this.type,
+        sbjtype: this.sjtype
+      })).then(function (response){
+        if (response.data.code !== 0) {
+          console.log(response)
+        } else {
+          console.log('getQXTopType', response);
+          _this.tableDataList = response.data.result;
+        }
+      }.bind(this))
+        .catch(function (error){
+          console.log(error)
+        }.bind(this));
     }
   }
 };
@@ -136,15 +130,7 @@ export default {
 <style scoped lang="scss">
   @import "alarmSort";
 </style>
-<style lang="scss">
-.alarmSort {
-  .scroll-height {
-    .happy-scroll-container {
-      height: 250px !important;
-    }
-  }
-}
-</style>
+
 <style lang="scss">
 .navChartChange {
   .el-tabs__header {

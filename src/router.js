@@ -15,19 +15,11 @@ const router = new Router({
       }
     },
     {
-      path: "/wisdomThings",
-      name: "wisdomThings",
-      component: () => import("./views/wisdomThings/wisdomThings.vue"),
-      meta: {
-        index: 1
-      }
-    },
-    {
       path: "/filesDispose",
       name: "filesDispose",
       component: () => import("./views/filesDispose/filesDispose.vue"),
       meta: {
-        index: 2
+        index: 1
       }
     },
     {
@@ -36,7 +28,24 @@ const router = new Router({
       component: () =>
         import("./views/intelligentAnalytics/intelligentAnalytics.vue"),
       meta: {
+        index: 2
+      }
+    },
+    {
+      path: "/specializedAnalysis",
+      name: "specializedAnalysis",
+      component: () =>
+        import("./views/specializedAnalysis/specializedAnalysis.vue"),
+      meta: {
         index: 3
+      }
+    },
+    {
+      path: "/wisdomThings",
+      name: "wisdomThings",
+      component: () => import("./views/wisdomThings/wisdomThings.vue"),
+      meta: {
+        index: 4
       }
     },
     {
@@ -45,7 +54,7 @@ const router = new Router({
       component: () => import("./views/map/map-iframe.vue"),
       // component: () => import("./views/wisdomThings/wisdomThings.vue"),
       meta: {
-        index: 4
+        index: 5
       }
     }
   ]

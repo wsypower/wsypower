@@ -1,5 +1,5 @@
 <template>
-  <div class="introduce_two" flex="dir:top">
+  <div class="introduce_two" flex="dir:top main:justify">
     <div class="introduce_item">
       <div class="introduce_item-header"></div>
       <div class="introduce_item-content">
@@ -80,26 +80,26 @@ export default {
 
     area() {
       return [
-        {
-          value: '普陀山镇',
-          code: '330903106'
-        },
-        {
-          value: '六横镇',
-          code: '330903100'
-        },
-        {
-          value: '桃花镇',
-          code: '330903104'
-        },
-        {
-          value: '虾峙镇',
-          code: '330903102'
-        },
-        {
-          value: '东极镇',
-          code: '330903105'
-        },
+        // {
+        //   value: '普陀山镇',
+        //   code: '330903106'
+        // },
+        // {
+        //   value: '六横镇',
+        //   code: '330903100'
+        // },
+        // {
+        //   value: '桃花镇',
+        //   code: '330903104'
+        // },
+        // {
+        //   value: '虾峙镇',
+        //   code: '330903102'
+        // },
+        // {
+        //   value: '东极镇',
+        //   code: '330903105'
+        // },
         {
           value: '沈家门街道',
           code: '330903001'
@@ -107,15 +107,16 @@ export default {
         {
           value: '东港街道',
           code: '330903003'
-        },
-        {
-          value: '朱家尖街道',
-          code: '330903004'
-        },
-        {
-          value: '展茅街道',
-          code: '330903005'
         }
+        // ,
+        // {
+        //   value: '朱家尖街道',
+        //   code: '330903004'
+        // },
+        // {
+        //   value: '展茅街道',
+        //   code: '330903005'
+        // }
       ]
     }
   },

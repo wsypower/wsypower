@@ -31,50 +31,52 @@ export default {
   computed: {
     optionCode() {
       return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   created() {
     this.timer = SCREEN_CONFIG.setTimer;
   },
   mounted() {
-    this.cycleTime(this.optionCode);
+    this.cycleTime();
   },
 
   watch: {
-    optionCode: function(val) {
-      this.cycleTime(val);
+    optionCode: function() {
+      this.cycleTime();
     }
   },
 
   methods: {
-    cycleTime(placecode) {
+    cycleTime() {
       clearInterval(this.interval);
-      this.acquire(placecode);
+      this.acquire();
       this.interval = setInterval(() => {
-        // console.log('执行一次')
-        this.acquire(placecode);
+        this.acquire();
       }, this.timer);
     },
-    acquire(placecode) {
+    acquire() {
       let _this = this;
       this.axios
         .get(
-          "/bigscreen/getQuotaDataList?placecode=" +
-            placecode +
-            "&_t=" +
-            new Date().getTime()
+          "/bigscreen/getIndicators?placecode="
+          + this.optionCode
+          + "&userId=" + this.userId
+          + "&_t=" + new Date().getTime()
         )
         .then(
           function(response) {
-            if (response.data.code !== "0") {
+            if (response.data.code !== 0) {
               console.log(response);
             } else {
-              console.log(response);
+              console.log('getIndicators',response);
               this.sourceList = [
-                { title: "当月告警", num: response.data.result.warnMonthNum },
-                { title: "当日告警", num: response.data.result.warnDayNum },
-                { title: "当月上报", num: response.data.result.reportMonthNum },
-                { title: "当日上报", num: response.data.result.reportDayNum }
+                { title: "当月告警", num: response.data.result[0].monthAlarmCount },
+                { title: "当日告警", num: response.data.result[0].dayAlarmCount },
+                { title: "当月上报", num: response.data.result[0].monthQXCount },
+                { title: "当日上报", num: response.data.result[0].dayQXCount }
               ];
             }
           }.bind(this)

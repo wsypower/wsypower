@@ -9,20 +9,20 @@
               <span class="iconfont icon-che"></span>
               <div class="item-title" flex="cross:center">{{ item.carNumber }}</div>
               <div class="item-timer" flex="cross:center">
-                {{ $formatDate(parseInt(item.createtime)) }}
+                {{ item.createtime }}
               </div>
             </div>
             <div class="item-content" flex="dir:left">
               <div class="item-content-left">
                 <div class="statue" flex="main:center" v-if="item.dealstatus == 0">
-                  <span>未<br />处<br />理</span>
+                  <span>未<br />结<br />案</span>
                 </div>
                 <div
                   class="statue yichuli"
                   flex="main:center"
                   v-if="item.dealstatus == 1"
                 >
-                  <span>已<br />处<br />理</span>
+                  <span>已<br />结<br />案</span>
                 </div>
                 <img :src="item.pic_url" alt />
               </div>
@@ -48,53 +48,49 @@ export default {
   name: "illegalBuilding",
   data() {
     return {
-      list: [
-        {
-          "pic_url": require('./img/3.jpg'),
-          "carNumber": "浙L88888",
-          "createtime": 1594709740823,
-          "big_type": "市容环境",
-          "small_type": "小类",
-          "description": "描述",
-          "dealstatus": 0
-        },
-        {
-          "pic_url": require('./img/2.jpg'),
-          "carNumber": "浙L88888",
-          "createtime": 1594709740823,
-          "big_type": "市容环境",
-          "small_type": "小类",
-          "description": "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述",
-          "dealstatus": 1
-        },
-        {
-          "pic_url": require('./img/1.jpg'),
-          "carNumber": "浙L88888",
-          "createtime": 1594709740823,
-          "big_type": "市容环境",
-          "small_type": "小类",
-          "description": "描述",
-          "dealstatus": 0
-        }
-      ]
+      list: []
     };
   },
   mounted() {
     this.getList();
   },
+  computed: {
+    optionCode() {
+      return this.$store.state.optionCode;
+    },
+    userId() {
+      return this.$store.state.userId;
+    }
+  },
   methods: {
     getList() {
-      this.axios.post("/bigscreen/getCameraTopThree").then(response => {
-        console.log(response);
-        // if(response.data.result.length>0){
-        //   this.list = response.data.result;
-        // }
-        this.list.map(item => {
-          if(item.description.length>36){
-            item.description = item.description.substring(0,36) + '...';
-          }
-        });
-      });
+      this.axios.post('/bigscreen/getList', this.qs.stringify({
+        userId: this.userId,
+        placecode: this.optionCode,
+        top: 1000
+      })).then(function (response){
+        if (response.data.code !== 0) {
+          console.log(response)
+        } else {
+          this.list = [];
+          response.data.result.forEach(item => {
+            let temp = {
+              "pic_url": SCREEN_CONFIG.filePath + item.urls,
+              "carNumber": item.carnum,
+              "createtime": item.createtime,
+              "big_type": item.maintype,
+              "small_type": item.subtype,
+              "description": item.eventdesc.length>36?item.eventdesc.substring(0,36) + '...':item.eventdesc,
+              "dealstatus": item.dealstatus
+            }
+            this.list.push(temp);
+          })
+          console.log('getList222222', this.list);
+        }
+      }.bind(this))
+        .catch(function (error){
+          console.log(error)
+        }.bind(this));
     }
   }
 };

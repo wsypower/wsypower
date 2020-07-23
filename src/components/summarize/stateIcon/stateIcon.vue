@@ -80,14 +80,15 @@ export default {
           datacreatVal: 0,
           datacreat: 0,
           imgsrc: require('./img/zfcl.png'),
-        },
-        {
-          value: '协管人员',
-          grand: 0,
-          datacreatVal: 0,
-          datacreat: 0,
-          imgsrc: require('./img/xgry.png'),
         }
+        // ,
+        // {
+        //   value: '协管人员',
+        //   grand: 0,
+        //   datacreatVal: 0,
+        //   datacreat: 0,
+        //   imgsrc: require('./img/xgry.png'),
+        // }
       ]
     }
   },
@@ -126,17 +127,18 @@ export default {
         if (response.data.code !== 0) {
           console.log(response)
         } else {
-          let upData = this.dataList;
-          upData.map((v, i, arr) => {
-            arr[i].datacreatVal = parseInt(arr[i].datacreat);
-          })
-          this.dataList[0].datacreat = parseInt(response.data.result.jds);
-          this.dataList[1].datacreat = parseInt(response.data.result.jdys);
-          this.dataList[2].datacreat = parseInt(response.data.result.zfdys);
+          // let upData = this.dataList;
+          // upData.map((v, i, arr) => {
+          //   arr[i].datacreatVal = parseInt(arr[i].datacreat);
+          // })
+          this.dataList[0].datacreat = parseInt(response.data.result.xzjds);
+          this.dataList[1].datacreat = parseInt(response.data.result.sqs);
+          this.dataList[2].datacreat = parseInt(response.data.result.slys);
           this.dataList[3].datacreat = parseInt(response.data.result.jks);
-          this.dataList[4].datacreat = parseInt(response.data.result.zfcls);
-          this.dataList[5].datacreat = parseInt(response.data.result.lds);
-          this.dataList[6].datacreat = parseInt(response.data.result.bjzs);
+          this.dataList[4].datacreat = parseInt(response.data.result.wgs);
+          this.dataList[5].datacreat = parseInt(response.data.result.zfdys);
+          this.dataList[6].datacreat = parseInt(response.data.result.zfcls);
+          console.log('this.dataList',this.dataList);
         }
       }.bind(this))
         .catch(function (error){

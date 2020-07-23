@@ -119,7 +119,7 @@ export function locateTo(map) {
     });
     map.removeLayer(fillLayer);
     let pointer;
-    centerTo(map,[122.46891822,29.89515006],10);
+    centerTo(map,[122.30083465576172,29.959888458251953],11.5);
     // boundLayers = getBoundLayers(bound);
     // boundLayers.map((layer)=>{
     //   map.addLayer(layer);
