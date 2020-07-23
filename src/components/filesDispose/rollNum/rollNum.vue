@@ -65,7 +65,7 @@ export default {
         {
           startVal:0,
           endVal:1000,
-          value: '累计上报数',
+          value: '本年上报数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -76,7 +76,7 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '累计立案数',
+          value: '本年立案数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -86,7 +86,7 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '累计处理数',
+          value: '本年处理数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -96,7 +96,7 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '累计结案数',
+          value: '本年结案数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -142,22 +142,22 @@ export default {
           console.log(response)
         } else {
           this.dataList[0].startVal = this.dataList[0].grand;
-          this.dataList[0].grand = response.data.result.bysbs;
+          this.dataList[0].grand = response.data.result.bnsbs;
           this.dataList[0].datacreatVal = this.dataList[0].datacreat;
           this.dataList[0].datacreat = response.data.result.brsbs;
 
           this.dataList[1].startVal = this.dataList[0].grand;
-          this.dataList[1].grand = response.data.result.bylas;
+          this.dataList[1].grand = response.data.result.bnlas;
           this.dataList[1].datacreatVal = this.dataList[0].datacreat;
           this.dataList[1].datacreat = response.data.result.brlas;
 
           this.dataList[2].startVal = this.dataList[0].grand;
-          this.dataList[2].grand = response.data.result.byczs;
+          this.dataList[2].grand = response.data.result.bnczs;
           this.dataList[2].datacreatVal = this.dataList[0].datacreat;
           this.dataList[2].datacreat = response.data.result.brczs;
 
           this.dataList[3].startVal = this.dataList[0].grand;
-          this.dataList[3].grand = response.data.result.byjas;
+          this.dataList[3].grand = response.data.result.bnjas;
           this.dataList[3].datacreatVal = this.dataList[0].datacreat;
           this.dataList[3].datacreat = response.data.result.brjas;
 
