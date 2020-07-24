@@ -131,7 +131,7 @@ export default {
           // upData.map((v, i, arr) => {
           //   arr[i].datacreatVal = parseInt(arr[i].datacreat);
           // })
-          this.dataList[0].datacreat = parseInt(response.data.result.xzjds);
+          this.dataList[0].datacreat = 2; //parseInt(response.data.result.xzjds)
           this.dataList[1].datacreat = parseInt(response.data.result.sqs);
           this.dataList[2].datacreat = parseInt(response.data.result.slys);
           this.dataList[3].datacreat = parseInt(response.data.result.jks);
