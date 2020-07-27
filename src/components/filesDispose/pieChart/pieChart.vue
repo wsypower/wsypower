@@ -166,7 +166,7 @@ export default {
           right: 15,
           borderColor: ''
         },
-        color: ['#FF5959', '#37F4FF', '#1C7DFA', '#9049F9',  '#FED700', '#59C73B'],
+        color: ['#FF5959', '#37F4FF', '#1C7DFA', '#9049f9',  '#FED700', '#59C73B' ,'#d21ade','#59da18'],
         series: [
           {
             name: '访问来源',

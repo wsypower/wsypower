@@ -25,8 +25,10 @@ const router = new Router({
     {
       path: "/intelligentAnalytics",
       name: "intelligentAnalytics",
+      // component: () =>
+      //   import("./views/intelligentAnalytics/intelligentAnalytics.vue"),
       component: () =>
-        import("./views/intelligentAnalytics/intelligentAnalytics.vue"),
+        import("./views/specializedAnalysis/specializedAnalysis.vue"),
       meta: {
         index: 2
       }

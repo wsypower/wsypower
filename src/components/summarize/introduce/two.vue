@@ -124,7 +124,7 @@ export default {
     return {
       people: {
         startVal: 0,
-        endVal: 39.12,
+        endVal: 32.19,
         grand: 1000,
         decimals: 2
       },
