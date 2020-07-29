@@ -1,46 +1,44 @@
 <template>
   <div class="rollNum">
-    <!--<div class="rollNum-header" flex="main:right">-->
-      <!--<div class="navChartChange">-->
-        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
-          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
-          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
-        <!--</el-tabs>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="rollNum-header" flex="main:right">
+      <div class="navChartChange">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="总计" name="总计"></el-tab-pane>
+          <el-tab-pane label="月" name="月"></el-tab-pane>
+          <el-tab-pane label="年" name="年"></el-tab-pane>
+        </el-tabs>
+      </div>
+    </div>
     <ul flex="dir:left main:justify">
-      <li flex="cross:center" v-for="item in dataList" :key="item.imgsrc">
-        <div class="rollNum-roll" flex="cross:center">
-          <div class="rollNum-roll-icon">
-            <!--转圈的圆形-->
-            <roll-animation>
-              <img :src="item.imgsrc" alt="" />
-            </roll-animation>
-          </div>
-          <div class="rollNum-roll-icon-title" flex="dir:top cross:center">
-            <div class="icon-title-text">
-              {{ item.value }}
-            </div>
-            <div class="icon-title-num">
-              <!--{{item.grand}}-->
-              <countTo
-                :startVal="item.startVal"
-                :endVal="item.grand"
-                :duration="item.endVal"
-              ></countTo>
-            </div>
-          </div>
+      <li flex="dir:top cross:center" v-for="item in dataList" :key="item.imgsrc">
+        <div class="rollNum-roll-icon">
+          <!--转圈的圆形-->
+          <roll-animation>
+            <img :src="item.imgsrc" alt="" />
+          </roll-animation>
         </div>
-        <div class="rollNum-title" flex="cross:center main:center">
-          今日新增：
-          <span>
-            <countTo
-              :startVal="item.datacreatVal"
-              :endVal="item.datacreat"
-              :duration="item.endVal"
-            ></countTo>
-          </span>
+        <div class="icon-title-num" v-if="item.grand.toString().indexOf('.')<0">
+          <countTo
+            separator=""
+            :startVal="item.startVal"
+            :endVal="item.grand"
+            :duration="item.endVal"
+          ></countTo>
         </div>
+        <div class="icon-title-num" v-else>
+          <countTo
+             separator=""
+             :decimals="2"
+             :startVal="item.startVal"
+             :endVal="item.grand"
+             :duration="item.endVal"
+          ></countTo>
+        </div>
+        <div class="icon-title-text">
+          {{ item.value }}
+        </div>
+        <div class="rollNum-title add">{{item.datacreat}}</div>
+        <div class="rollNum-title">今日新增</div>
       </li>
     </ul>
   </div>
@@ -56,7 +54,7 @@ export default {
   components: {RollAnimation, countTo},
   data() {
     return {
-      activeName: '月',
+      activeName: '总计',
       //定时器
       interval: '',
       //定时器时间
@@ -65,7 +63,7 @@ export default {
         {
           startVal:0,
           endVal:1000,
-          value: '本年上报数',
+          value: '上报数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -76,7 +74,7 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '本年立案数',
+          value: '有效案件数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -86,7 +84,7 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '本年处理数',
+          value: '处理数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
@@ -96,12 +94,42 @@ export default {
           startVal:0,
           endVal:1000,
           duration:50000,
-          value: '本年结案数',
+          value: '城管结案数',
           grand: 0,
           datacreatVal:0,
           datacreat: 0,
           imgsrc: require('./img/leijijiean.png')
         },
+        {
+          startVal:0,
+          endVal:1000,
+          duration:50000,
+          value: '立案查处数',
+          grand: 0,
+          datacreatVal:0,
+          datacreat: 0,
+          imgsrc: require('./img/lianchachu.png'),
+        },
+        {
+          startVal:0,
+          endVal:1000,
+          duration:50000,
+          value: '执法结案数',
+          grand: 0,
+          datacreatVal:0,
+          datacreat: 0,
+          imgsrc: require('./img/zhifajiean.png'),
+        },
+        {
+          startVal:0,
+          endVal:5.49,
+          duration:2000,
+          value: '处罚金额(万)',
+          grand: 5.89,
+          datacreatVal:0,
+          datacreat: 0,
+          imgsrc: require('./img/chufajine.png'),
+        }
       ],
       resultData:{}
     }

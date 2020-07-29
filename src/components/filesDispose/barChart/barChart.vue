@@ -1,16 +1,16 @@
 <template>
   <div class="barChart">
-    <div class="bar_header"></div>
-    <!--<div class="bar_header" flex="main:right">-->
-      <!--<div class="navChartChange">-->
-        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
-          <!--<el-tab-pane label="总计" name="总计"></el-tab-pane>-->
-          <!--<el-tab-pane label="日" name="日"></el-tab-pane>-->
-          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
-          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
-        <!--</el-tabs>-->
-      <!--</div>-->
-    <!--</div>-->
+<!--    <div class="bar_header"></div>-->
+    <div class="bar_header" flex="main:right">
+      <div class="navChartChange">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="总计" name="总计"></el-tab-pane>
+<!--          <el-tab-pane label="日" name="日"></el-tab-pane>-->
+          <el-tab-pane label="月" name="月"></el-tab-pane>
+          <el-tab-pane label="年" name="年"></el-tab-pane>
+        </el-tabs>
+      </div>
+    </div>
     <div v-show="xData.length===0" class="bar_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
     <div v-show="xData.length!==0" class="bar_content">
       <div id="barSource"></div>
@@ -91,7 +91,7 @@ export default {
             placecode: this.optionCode,
             top: 5,
             // sjtype: this.sjtype,
-            // type: this.type
+            type: this.type
           })
         )
         .then(

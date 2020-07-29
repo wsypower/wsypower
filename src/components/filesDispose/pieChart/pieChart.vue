@@ -1,18 +1,17 @@
 <template>
   <div class="pieChart">
-    <div class="pie_header"></div>
-    <!--<div class="pie_header" flex="main:right">-->
-      <!--<div class="navChartChange">-->
-        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
-          <!--<el-tab-pane label="总计" name="总计"></el-tab-pane>-->
-          <!--<el-tab-pane label="日" name="日"></el-tab-pane>-->
-          <!--<el-tab-pane label="月" name="月"></el-tab-pane>-->
-          <!--<el-tab-pane label="年" name="年"></el-tab-pane>-->
-        <!--</el-tabs>-->
-      <!--</div>-->
-    <!--</div>-->
-    <div v-show="updata.length===0" class="pie_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
-    <div v-show="updata.length!==0" class="pie_content" id="pieSource"></div>
+    <div class="pie_header" flex="main:right">
+      <div class="navChartChange">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="总计" name="总计"></el-tab-pane>
+<!--          <el-tab-pane label="日" name="日"></el-tab-pane>-->
+          <el-tab-pane label="月" name="月"></el-tab-pane>
+          <el-tab-pane label="年" name="年"></el-tab-pane>
+        </el-tabs>
+      </div>
+    </div>
+    <div v-show="upData.length===0" class="pie_content" flex="cross:center main:center"><span class="nodata-text">暂无数据</span></div>
+    <div v-show="upData.length!==0" class="pie_content" id="pieSource"></div>
   </div>
 </template>
 
@@ -27,7 +26,7 @@ export default {
       interval: '',
       //定时器时间
       timer:600000,
-      updata: []
+      upData: []
     }
   },
   created() {
@@ -77,59 +76,33 @@ export default {
       this.axios.post('/bigscreen/eventSource', this.qs.stringify({
         userId: this.userId,
         placecode: this.optionCode,
-        // type: this.type
+        type: this.type
       })).then(function (response) {
         if (response.data.code !== 0) {
           console.log(response)
         } else {
-          this.updata = response.data.result.map((item) => {
-            return {
-              "value": item.count,
-              "handleData": item.count,
-              "name": item.source,
-            }
-          });
-          if(this.updata.length!=0){
-            this.updata.sort(this.compare);
-            let total = this.updata.reduce((accumulator, item)=>accumulator + item.value,0);
-            let addNum = Math.floor(this.updata[0].value/5);
-            let newArr = this.updata.map((item) => {
-              if(item.value>addNum) {
-                return {
-                  "value": item.value,
-                  "handleData": item.value,
-                  "name": item.name,
-                  "percent": (item.handleData/total*100).toFixed(2)
-                }
-              }
-              else {
-                return {
-                  "value": item.value + addNum,
-                  "handleData": item.value,
-                  "name": item.name,
-                  "percent": (item.handleData/total*100).toFixed(2)
-                }
-              }
-            });
-            newArr.sort(this.compare);
-            let length = newArr.length;
-            let arrA = [];
-            let arrB = [];
-            if(length%2===0){
-              arrA = newArr.slice(0,length/2);
-              arrB = newArr.slice(length/2);
+          console.log(response.data.result)
+          let r = response.data.result;
+          this.upData = [];
+          let total = 0;
+          for(let i=0;i<r.length;i++){
+            total = total + r[i].count;
+          }
+          let totalr = 0;
+          for(let i=0;i<r.length;i++){
+            let rate = '', item = {};
+            if(i===r.length-1){
+              rate = (100 - totalr) + '%';
+              item = {'name': r[i].source + '_' + r[i].count + '_' + rate,'name_str':r[i].source,'value': r[i].count,'rate': rate};
             }
             else{
-              arrA = newArr.slice(0,Math.ceil(length/2));
-              arrB = newArr.slice(Math.ceil(length/2));
+              rate = (r[i].count*100/total).toFixed(0) + '%';
+              item = {'name': r[i].source + '_' + r[i].count + '_' + rate,'name_str':r[i].source,'value': r[i].count,'rate': rate};
+              totalr = totalr + parseInt((r[i].count*100/total).toFixed(0));
             }
-            //this.updata
-            arrB.forEach(function (item, index) {
-              arrA.splice(1 * (index + 1) + index, 0, item);
-            });
-
-            console.log('arrA',arrA);
-            this.updata = arrA;
+            this.upData.push(item);
+          }
+          if(this.upData.length>0){
             this.pieChartInit();
           }
         }
@@ -138,87 +111,108 @@ export default {
           console.log(error)
         }.bind(this));
     },
-    compare(obj1, obj2) {
-      var val1 = obj1.value;
-      var val2 = obj2.value;
-      if (val1 < val2) {
-        return 1;
-      } else if (val1 > val2) {
-        return -1;
-      } else {
-        return 0;
-      }
-    },
     pieChartInit() {
       const ChartColumnar = this.$echarts.init(document.getElementById('pieSource'));
       ChartColumnar.setOption({
-        tooltip: {
-          trigger: 'item',
-          formatter: function(params){
-            return params.name + ':' + params.data.handleData
-          }
-        },
         grid: {
           borderWidth: 0,
-          top: 100,
-          left: 50,
-          bottom: 60,
-          right: 15,
-          borderColor: ''
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          containLabel: true
         },
-        color: ['#FF5959', '#37F4FF', '#1C7DFA', '#9049f9',  '#FED700', '#59C73B' ,'#d21ade','#59da18'],
-        series: [
-          {
-            name: '访问来源',
-            type: 'pie',
-            radius: ['40%', '50%'],
-            avoidLabelOverlap: false,
-            label: {
-              normal: {
-                formatter:function(params){
-                  let res = ['{a|'+ params.data.handleData + '}  {c|' + params.data.percent+'%}','{b|' + params.name +'}'].join('\n')
-                  return res
-                },
-                color: "#fff",
-                verticalAlign: 'bottom',
-                rich: {
-
-                  a: {
-                    color: '#fff',
-                    fontSize: '24',
-                    fontFamily: 'nums',
-                    verticalAlign: 'bottom',
-                  },
-                  c: {
-                    color: '#FED700',
-                    fontSize: '18',
-                    fontFamily: 'nums',
-                    verticalAlign: 'bottom',
-                  },
-                  b: {
-                    borderColor: '#fff',
-                    borderTopWidth: 1,
-                    color: '#609ADD',
-                    fontSize: '16',
-                    verticalAlign: 'bottom',
-                    lineHeight: 23,
-                    align: 'middle'
-                  },
-                }
-              }
-            },
-            labelLine: {
-              show: true,
-              length: 15,
-              length2: 20,
-              lineStyle: {
-                color: '#D8D9EC',
-                type: 'dashed',
+        color:['#ff5959','#1c7dfa', '#59c73b', '#fed700', '#9049f9','#37f4ff', '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+        legend:{
+          right: '15',
+          top: 'middle',
+          orient: 'vertical',
+          width: '230',
+          align: 'left',
+          itemWidth: 10,
+          itemHeight: 10,
+          formatter: function (name) {
+            let arr = name.split('_');
+            return ['{a|'+arr[0]+'}','{b|'+arr[1]+'}','{c|'+arr[2]+'}'].join('')
+          },
+          textStyle:{
+            rich:{
+              a: {
+                color: '#74c1fc',
+                width: 100
               },
+              b: {
+                color: '#ffffff',
+                width: 40
+              },
+              c: {
+                color: '#fed700',
+                width: 30
+              }
+            }
+          },
+        },
+        tooltip: {
+          show: true,
+          position: [20, 0],
+          trigger: 'item',
+          alwaysShowContent: true,
+          backgroundColor: 'rgba(50,50,50,0)',
+          formatter: function(params){
+            console.log(params);
+            return "<div style='line-height: 30px;font-size: 13px;color:#74c1fc;'>" + params.data.name_str + "</div>"
+              + "<div style='width:100%;border-top: 1px dashed #ffffff;height:5px;'></div>"
+              + "<span style='font-family:nums;font-size: 24px;color:#ffffff;'>" + params.data.value + "</span>"
+              + "<span style='font-family:nums;margin-left:6px; font-size: 18px;color:#fed700;'>" +params.data.rate + "</span>"
+
+          }
+        },
+
+        series : [
+          {
+            name: '来源方式',
+            type: 'pie',
+            radius : ['45%','55%'],
+            center: ['33%', '50%'],
+            label:{
+              show:false
             },
-            data: this.updata
+            data: this.upData,
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
           }
         ]
+      })
+      setTimeout(function(){
+        ChartColumnar.dispatchAction({
+          type: 'showTip',
+          seriesIndex:0,  // 显示第几个series
+          dataIndex: 0 // 显示第几个数据
+        });
+      })
+      let _this = this;
+      ChartColumnar.on('legendselectchanged', function (params) {
+        console.log('legendselectchanged',params);
+        if(params.selected[params.name]){
+          console.log('legendselect 111');
+          let index = _this.upData.findIndex(item => item.name === params.name);
+          ChartColumnar.dispatchAction({
+            type: 'showTip',
+            seriesIndex:0,  // 显示第几个series
+            dataIndex: index // 显示第几个数据
+          });
+        }
+        else{
+          console.log('legendselect 222');
+          ChartColumnar.dispatchAction({
+            type: 'hideTip'
+          });
+        }
       })
     }
   },

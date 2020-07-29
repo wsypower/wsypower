@@ -7,13 +7,13 @@
       <vue-seamless-scroll :data="listData" class="seamless-warp">
         <ul>
           <li v-for="item in listData" :key="item.id">
-            <div class="statue" flex="main:center" v-if="item.dealstatus == 0">
+            <div class="statue" flex="main:center" v-if="item.dealstatus == '0'">
               <span>未<br />处<br />理</span>
             </div>
             <div
               class="statue yichuli"
               flex="main:center"
-              v-if="item.dealstatus == 1"
+              v-if="item.dealstatus == '1'"
             >
               <span>已<br />处<br />理</span>
             </div>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="item-content" flex="cross:center main:center">
-              <div class="img-box" flex="cross:center main:center">
+              <div class="img-box" flex="cross:center main:center" :class="{blue:item.dealstatus == '1'}">
                 <img :src="item.fileServer + item.url" alt="" />
               </div>
             </div>
