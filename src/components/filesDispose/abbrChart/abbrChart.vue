@@ -76,7 +76,7 @@ export default {
       this.axios.post('/bigscreen/eventArea', this.qs.stringify({
         userId: this.userId,
         placecode: this.optionCode,
-        top: 1,
+        top: 0,
         type: this.type
       })).then(function (response) {
         if (response.data.code !== 0) {
@@ -97,9 +97,9 @@ export default {
       ChartColumnar.setOption({
         // tooltip: {},
         visualMap: {
-          max: 20,
+          max: 250,
           inRange: {
-            color: ['#2046cf', '#3465dd', '#3f5ee9', '#6786f8', '#8fb7f8',]
+            color: ['#0033FF', '#2effff', '#2effff', '#2effff']
           },
           textStyle: {
             color: '#43FFFF',

@@ -87,7 +87,7 @@ export default {
           this.resultData = [];
           for(let i=0;i<r.length;i++){
             let total = r[i].czs + r[i].las + r[i].jas,
-                item = {'name': r[i].name,'value': total,'value2': r[i].las,'value3': r[i].czs,'value4': r[i].jas};
+                item = {'name': '普陀区'+ r[i].name,'value': total,'value2': r[i].las,'value3': r[i].czs,'value4': r[i].jas};
             this.resultData.push(item);
           }
           if(this.resultData.length>0){
@@ -121,7 +121,7 @@ export default {
         },
         color:['#ff5959','#1c7dfa', '#59c73b', '#fed700', '#9049f9','#37f4ff', '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
         legend:{
-          right: '30',
+          right: '20',
           top: 'middle',
           orient: 'vertical',
           width: '130',
@@ -146,8 +146,8 @@ export default {
             console.log(params);
             return "<span style='font-family:nums;font-size: 24px;color:#ffffff;'>" + params.data.value + "</span>"
               + "<span style='font-family:nums;margin-left:10px; font-size: 18px;color:#fed700;'>" +params.percent + "%</span>"
-              + "<div style='width:100%;border-top: 1px dashed #ffffff;'></div>"
-              + "<span style='line-height: 30px;font-size: 13px;color:#74c1fc;'>" + params.name + "</span></br>"
+              + "<div style='width:100%;border-top: 1px dashed #ffffff;height:3px;'></div>"
+              + "<span style='line-height: 30px;font-size: 13px;color:#74c1fc;'>" + params.name.substring(3) + "</span></br>"
               + "<span style='font-family:nums;font-size: 13px;color:#74c1fc;'>立案数：" + params.data.value2 + "</span></br>"
               + "<span style='font-family:nums;font-size: 13px;color:#74c1fc;'>处置数：" + params.data.value3 + "</span></br>"
               + "<span style='font-family:nums;font-size: 13px;color:#74c1fc;'>结案数：" + params.data.value4 + "</span>"

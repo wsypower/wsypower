@@ -17,27 +17,27 @@
             <img :src="item.imgsrc" alt="" />
           </roll-animation>
         </div>
-        <div class="icon-title-num" v-if="item.grand.toString().indexOf('.')<0">
+        <div class="icon-title-num" v-if="item.count.toString().indexOf('.')<0">
           <countTo
             separator=""
-            :startVal="item.startVal"
-            :endVal="item.grand"
-            :duration="item.endVal"
+            :startVal="0"
+            :endVal="item.count"
+            :duration="2000"
           ></countTo>
         </div>
         <div class="icon-title-num" v-else>
           <countTo
              separator=""
              :decimals="2"
-             :startVal="item.startVal"
-             :endVal="item.grand"
-             :duration="item.endVal"
+             :startVal="0"
+             :endVal="item.count"
+             :duration="2000"
           ></countTo>
         </div>
         <div class="icon-title-text">
-          {{ item.value }}
+          {{ item.name }}
         </div>
-        <div class="rollNum-title add">{{item.datacreat}}</div>
+        <div class="rollNum-title add">{{item.dayCount}}</div>
         <div class="rollNum-title">今日新增</div>
       </li>
     </ul>
@@ -61,77 +61,103 @@ export default {
       timer:600000,
       dataList: [
         {
-          startVal:0,
-          endVal:1000,
-          value: '上报数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
+          id: 'sbs',
           imgsrc: require('./img/shangbao.png'),
-          duration:50000
+          name: '上报数',
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:1000,
-          duration:50000,
-          value: '有效案件数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
+          id: 'las',
           imgsrc: require('./img/lianshu.png'),
+          name: '有效案件数',
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:1000,
-          duration:50000,
-          value: '处理数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
-          imgsrc: require('./img/leijichulishu.png')
+          id: 'czs',
+          name: '处理数',
+          imgsrc: require('./img/leijichulishu.png'),
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:1000,
-          duration:50000,
-          value: '城管结案数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
-          imgsrc: require('./img/leijijiean.png')
+          id: 'jas',
+          name: '城管结案数',
+          imgsrc: require('./img/leijijiean.png'),
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:1000,
-          duration:50000,
-          value: '立案查处数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
+          id: 'laccs',
+          name: '立案查处数',
           imgsrc: require('./img/lianchachu.png'),
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:1000,
-          duration:50000,
-          value: '执法结案数',
-          grand: 0,
-          datacreatVal:0,
-          datacreat: 0,
+          id: 'zfjas',
+          name: '执法结案数',
           imgsrc: require('./img/zhifajiean.png'),
+          count: 0,
+          dayCount: 0
         },
         {
-          startVal:0,
-          endVal:5.49,
-          duration:2000,
-          value: '处罚金额(万)',
-          grand: 5.89,
-          datacreatVal:0,
-          datacreat: 0,
+          id: 'cfje',
+          name: '处罚金额(万)',
           imgsrc: require('./img/chufajine.png'),
+          count: 0,
+          dayCount: 0
         }
       ],
-      resultData:{}
+      resultDataOne:{
+        total:{
+          zjczs: 0,
+          zjjas: 0,
+          zjlas: 0,
+          zjsbs: 0
+        },
+        year:{
+          bnczs: 0,
+          bnjas: 0,
+          bnlas: 0,
+          bnsbs: 0
+        },
+        month:{
+          byczs: 0,
+          byjas: 0,
+          bylas: 0,
+          bysbs: 0,
+        },
+        day:{
+          brczs: 0,
+          brjas: 0,
+          brlas: 0,
+          brsbs: 0
+        }
+      },
+      resultDataTwo:{
+        total:{
+          zjlaccs: 0,
+          zjzfjas: 0,
+          zjcfje:0
+        },
+        year:{
+          bnlaccs: 0,
+          bnzfjas: 0,
+          bncfje:0
+        },
+        month:{
+          bylaccs: 0,
+          byzfjas: 0,
+          bycfje:0
+        },
+        day:{
+          brlaccs: 0,
+          brzfjas: 0,
+          brcfje:0
+        }
+      }
     }
   },
   created(){
@@ -169,27 +195,77 @@ export default {
         if (response.data.code !== 0) {
           console.log(response)
         } else {
-          this.dataList[0].startVal = this.dataList[0].grand;
-          this.dataList[0].grand = response.data.result.bnsbs;
-          this.dataList[0].datacreatVal = this.dataList[0].datacreat;
-          this.dataList[0].datacreat = response.data.result.brsbs;
+          this.resultDataOne.total = {
+            zjczs: response.data.result.zjczs,
+            zjjas: response.data.result.zjjas,
+            zjlas: response.data.result.zjlas,
+            zjsbs: response.data.result.zjsbs
+          }
+          this.resultDataOne.year = {
+            bnczs: response.data.result.bnczs,
+            bnjas: response.data.result.bnjas,
+            bnlas: response.data.result.bnlas,
+            bnsbs: response.data.result.bnsbs
+          }
+          this.resultDataOne.month = {
+            byczs: response.data.result.byczs,
+            byjas: response.data.result.byjas,
+            bylas: response.data.result.bylas,
+            bysbs: response.data.result.bysbs
+          }
+          this.resultDataOne.day = {
+            brczs: response.data.result.brczs,
+            brjas: response.data.result.brjas,
+            brlas: response.data.result.brlas,
+            brsbs: response.data.result.brsbs
+          }
+          this.dataList.map((item,index) => {
+            if(index<4){
+              item.count = response.data.result[`zj${item.id}`];
+              item.dayCount = response.data.result[`br${item.id}`];
+              return item
+            }
+          })
+        }
+      }.bind(this))
+        .catch(function (error) {
+          console.log(error)
+        }.bind(this));
 
-          this.dataList[1].startVal = this.dataList[0].grand;
-          this.dataList[1].grand = response.data.result.bnlas;
-          this.dataList[1].datacreatVal = this.dataList[0].datacreat;
-          this.dataList[1].datacreat = response.data.result.brlas;
-
-          this.dataList[2].startVal = this.dataList[0].grand;
-          this.dataList[2].grand = response.data.result.bnczs;
-          this.dataList[2].datacreatVal = this.dataList[0].datacreat;
-          this.dataList[2].datacreat = response.data.result.brczs;
-
-          this.dataList[3].startVal = this.dataList[0].grand;
-          this.dataList[3].grand = response.data.result.bnjas;
-          this.dataList[3].datacreatVal = this.dataList[0].datacreat;
-          this.dataList[3].datacreat = response.data.result.brjas;
-
-          this.resultData = response.data.result;
+      this.axios2.get('/pubdle/province/provinceCase000info/ajaxGetCaseCount?_t=' + new Date().getTime()
+      ).then(function (response) {
+        console.log('ajaxGetCaseCount', response);
+        if (response.data.code !== '0') {
+          console.log(response)
+        } else {
+          this.resultDataTwo.total = {
+            zjcfje: response.data.result.zjcfje,
+            zjlaccs: response.data.result.zjlaccs,
+            zjzfjas: response.data.result.zjzfjas
+          }
+          this.resultDataTwo.year = {
+            bncfje: response.data.result.bncfje,
+            bnlaccs: response.data.result.bnlaccs,
+            bnzfjas: response.data.result.bnzfjas
+          }
+          this.resultDataTwo.month = {
+            bycfje: response.data.result.bycfje,
+            bylaccs: response.data.result.bylaccs,
+            byzfjas: response.data.result.byzfjas
+          }
+          this.resultDataTwo.day = {
+            brcfje: response.data.result.brcfje,
+            brlaccs: response.data.result.brlaccs,
+            brzfjas: response.data.result.brzfjas
+          }
+          console.log('this.resultDataTwo',this.resultDataTwo);
+          this.dataList.map((item,index) => {
+            if(index > 3){
+              item.count = response.data.result[`zj${item.id}`];
+              item.dayCount = response.data.result[`br${item.id}`];
+              return item
+            }
+          })
         }
       }.bind(this))
         .catch(function (error) {
@@ -199,16 +275,37 @@ export default {
     handleClick(val){
       console.log('rollNum:' , val);
       if(val.label=='月'){
-        this.dataList[0].grand = this.resultData.bysbs;
-        this.dataList[1].grand = this.resultData.bylas;
-        this.dataList[2].grand = this.resultData.byczs;
-        this.dataList[3].grand = this.resultData.byjas;
+        this.dataList.map((item, index) => {
+          if(index<4){
+            item.count = this.resultDataOne.month[`by${item.id}`];
+          }
+          else{
+            item.count = this.resultDataTwo.month[`by${item.id}`];
+          }
+          return item
+        })
+      }
+      else if(val.label=='年'){
+        this.dataList.map((item, index) => {
+          if(index<4){
+            item.count = this.resultDataOne.year[`bn${item.id}`];
+          }
+          else{
+            item.count = this.resultDataTwo.year[`bn${item.id}`];
+          }
+          return item
+        })
       }
       else{
-        this.dataList[0].grand = this.resultData.bnsbs;
-        this.dataList[1].grand = this.resultData.bnlas;
-        this.dataList[2].grand = this.resultData.bnczs;
-        this.dataList[3].grand = this.resultData.bnjas;
+        this.dataList.map((item, index) => {
+          if(index<4){
+            item.count = this.resultDataOne.total[`zj${item.id}`];
+          }
+          else{
+            item.count = this.resultDataTwo.total[`zj${item.id}`];
+          }
+          return item
+        })
       }
     }
   },

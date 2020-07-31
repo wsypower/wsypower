@@ -1,9 +1,13 @@
 import Vue from "vue";
 import "./plugins/axios";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./plugins/element.js";
+
+import axios2 from "./plugins/axios2";
+Vue.use(axios2);
 
 //引入vue全局方法
 import base from "./base.js";
