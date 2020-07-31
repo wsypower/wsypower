@@ -17,7 +17,7 @@
             <img :src="item.imgsrc" alt="" />
           </roll-animation>
         </div>
-        <div class="icon-title-num" v-if="item.count.toString().indexOf('.')<0">
+        <div class="icon-title-num" v-if="item.count&&item.count.toString().indexOf('.')<0">
           <countTo
             separator=""
             :startVal="0"
