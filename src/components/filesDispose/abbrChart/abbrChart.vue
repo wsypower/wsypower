@@ -184,7 +184,7 @@ export default {
           }),
           shading: 'lambert',
           itemStyle: {
-            opacity: 0.8
+            opacity: 1
           },
           label: {
             textStyle: {

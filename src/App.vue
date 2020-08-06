@@ -34,6 +34,14 @@
     font-family: FZZCHJW;
     src: url('~common/fonts/FZZZHONGHJW.TTF')
   }
+  @font-face {
+    font-family: PingFang-SC-Bold;
+    src: url('~common/fonts/PINGFANG_BOLD.TTF')
+  }
+  @font-face {
+    font-family: PingFang-SC-Medium;
+    src: url('~common/fonts/PINGFANG_MEDIUM.TTF')
+  }
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

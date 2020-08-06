@@ -1,0 +1,84 @@
+.zhiHuiShiZhen{
+  width: 716px;
+  height: 232px;
+  background: url('./img/background.png') no-repeat;
+  padding: 0px 28px;
+  .title_icon{
+    margin-top: -30px;
+    width: 220px;
+    height: 240px;
+    background: url('./img/zhihuishizhen.png') no-repeat;
+  }
+  &-right{
+    width: 416px;
+    height: 100%;
+    background: url("./img/back_1.png") no-repeat 0px 45px;
+    &-header {
+      width: 100%;
+      margin: 18px 0px 8px 0px;
+      height: 20px;
+      border-left: 5px solid #00c0ff;
+      padding-left: 8px;
+      font-family: FZZCHJW;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 23px;
+    }
+    &-body{
+      width: 100%;
+      height: 163px;
+      padding: 20px;
+      flex-wrap: wrap;
+      .shebei-item{
+        width: 135px;
+        height: 50px;
+        &_left{
+          width: 40px;
+          height: 40px;
+          border-radius: 6px;
+        }
+        &_right{
+          padding-left: 10px;
+          &-num{
+            color: #00c0ff;
+            font-size: 18px;
+            font-family:FZZCHJW;
+          }
+          &-text{
+            font-family: PingFang-SC-Bold;
+            font-size: 16px;
+            color: #ffffff;
+          }
+        }
+        &:nth-child(1){
+          .shebei-item_left{
+            background-color: #02f2fc;
+          }
+        }
+        &:nth-child(2){
+          .shebei-item_left{
+            background-color: #5aefc5;
+          }
+        }
+        &:nth-child(3){
+          width: 100px;
+          .shebei-item_left{
+            background-color: #ffbf69;
+          }
+        }
+        &:nth-child(4){
+          margin-top: 20px;
+          .shebei-item_left{
+            background-color: #7854fd;
+          }
+        }
+        &:nth-child(5){
+          margin-top: 20px;
+          .shebei-item_left{
+            background-color: #42cd22;
+          }
+        }
+      }
+    }
+  }
+}

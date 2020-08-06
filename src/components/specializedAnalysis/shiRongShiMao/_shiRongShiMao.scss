@@ -1,0 +1,84 @@
+.shiRongShiMao{
+  margin-top: 30px;
+  width: 716px;
+  height: 583px;
+  background: url('./img/background.png') no-repeat;
+  padding: 0px 28px;
+  &_top{
+    width: 100%;
+    height: 210px;
+    .title_icon{
+      margin-top: -30px;
+      width: 220px;
+      height: 240px;
+      background: url('./img/shirongshimao.png') no-repeat;
+    }
+    &-right{
+      width: 416px;
+      height: 100%;
+      background: url("./img/back_1.png") no-repeat 0px 45px;
+      &-header {
+        width: 100%;
+        margin: 16px 0px 6px 0px;
+        height: 20px;
+        border-left: 5px solid #00c0ff;
+        padding-left: 8px;
+        font-family: FZZCHJW;
+        font-size: 18px;
+        color: #ffffff;
+        line-height: 23px;
+      }
+      &-body{
+        width: 416px;
+        height: 164px;
+        //background-color: red;
+      }
+    }
+  }
+  &_bottom {
+    &-header{
+      >span{
+        width: 100%;
+        margin: 20px 0px 6px 0px;
+        height: 20px;
+        border-left: 5px solid #00c0ff;
+        padding-left: 8px;
+        font-family: FZZCHJW;
+        font-size: 18px;
+        color: #ffffff;
+        line-height: 23px;
+      }
+      .navChartChange {
+        /deep/.el-tabs__header {
+          margin: 0;
+          margin-top: 10px;
+          z-index: 10;
+          /deep/.el-tabs__item {
+            font-size: 18px;
+            color: #93c9ff;
+          }
+          /deep/.is-active {
+            color: #ffffff;
+          }
+        }
+
+        /deep/.el-tabs__nav-wrap::after {
+          background-color: transparent;
+        }
+
+        /deep/.el-tabs__active-bar {
+          height: 4px;
+          background-color: #ffe013;
+        }
+      }
+    }
+    &-body{
+      width: 100%;
+      height: 305px;
+      background: url("./img/back_2.png") no-repeat;
+      background-size: 100% 100%;
+      padding: 15px 15px;
+    }
+  }
+
+}
