@@ -17,6 +17,7 @@
       width: 416px;
       height: 100%;
       background: url("./img/back_1.png") no-repeat 0px 45px;
+      position: relative;
       &-header {
         width: 100%;
         margin: 16px 0px 6px 0px;
@@ -29,8 +30,11 @@
         line-height: 23px;
       }
       &-body{
+        position: absolute;
+        top: 10px;
+        left: 0px;
         width: 416px;
-        height: 164px;
+        height: 200px;
         //background-color: red;
       }
     }

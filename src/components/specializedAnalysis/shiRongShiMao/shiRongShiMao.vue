@@ -4,7 +4,9 @@
       <div class="title_icon"></div>
       <div class="shiRongShiMao_top-right">
         <div class="shiRongShiMao_top-right-header">巡查统计</div>
-        <div class="shiRongShiMao_top-right-body"></div>
+        <div class="shiRongShiMao_top-right-body">
+          <xun-cha-tong-ji></xun-cha-tong-ji>
+        </div>
       </div>
     </div>
     <div class="shiRongShiMao_bottom">
@@ -24,10 +26,12 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import TopItem from './topItem'
+  import XunChaTongJi from './xunChaTongJi';
+  import TopItem from './topItem';
   export default {
     name: 'shiRongShiMao',
     components:{
+      XunChaTongJi,
       TopItem
     },
     data(){
